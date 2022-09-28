@@ -3,12 +3,13 @@ import React from "react";
 const TrackSection = () => {
   return (
     <div>
-      <div className="lg:ml-44 lg:w-3/4 md:text-center sm:text-center md:w-full m-auto sm:w-full py-11">
+      <div className="lg:ml-44 lg:w-3/4 md:text-center sm:text-center md:w-full m-auto sm:w-full py-11 mt-12 mb-12">
         <section>
           <div className="flex flex-col md:flex-row">
             <div>
               <img
                 src="https://trackingtime.co/wp-content/themes/trackingtime-v5/img/temp/home/download-section/phone.png"
+                // src="../../Images/integrationTracksection.png"
                 alt="Time Tracking Integration with your phone"
                 width="90%"
               />
