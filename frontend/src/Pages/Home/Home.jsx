@@ -4,19 +4,20 @@ import Header from './homeHeader';
 import { FcGoogle } from 'react-icons/fc';
 import { Heading, Box, Button} from '@chakra-ui/react';
 import headerImage from '../../Images/HeaderImage-Time.PNG';
-import Slider from './Slider';
+import SlideShowComp from './SlideShowComp';
+import ButtonComp from './ButtonComp';
 const Home = () => {
   return (
     <div className='Home__container'>
       <div className='Header__container'>
+        {/* custom component for top */}
         <Header />
-
 
         <div className='Signin__google'>
           <i className='Signin__google-icon'>
             <FcGoogle />
           </i>
-          <a href='#' className='Signin__google-link'>
+          <a href='#' className='Signin__google-link' >
             Sign in with Google
           </a>
         </div>
@@ -25,17 +26,16 @@ const Home = () => {
         <img src={headerImage} alt='headerImage' />
       </div>
 
-      {/* ===========image slide show=========== */}
-      <div className='slide__show'>
-        <p>Companies of all shapes and sizes use TrackingTime</p>
+    {/* {Top section Ends} */}
 
-        <div className='slide__container'>
-          <Slider />
-        </div>
-      </div>
+    {/* SlideShow Starts */}
+
+    <SlideShowComp />
+
+    {/* SlideShow Starts */}
 
       <div className='feature__management__container'>
-        <h2>THE FEATURES YOUR PROJECT MANAGEMENT APP IS MISSING</h2>
+        <h2 style={{textAlign:"center",marginTop:"30px" }}>THE FEATURES YOUR PROJECT MANAGEMENT APP IS MISSING</h2>
 
         <div className='featureCard__container'>
           <div className='featureCard'>
@@ -197,19 +197,18 @@ const Home = () => {
           />
         </div>
 
-        <Box >
-          <Heading fontSize={{base:'30px', lg:'50px'}}>Get professional timesheets done in no time!</Heading>
-          <p>
+        <Box padding="10px" >
+          <Heading textAlign="center" fontSize={{base:'30px', lg:'50px'}}>Get professional timesheets done in no time!</Heading>
+          <p style={{textAlign:"center", display:"flex" ,flexWrap:"wrap" }}>
             Sign up today and join thousands of people around the world using
             TrackingTime to simplify their timesheets.
           </p>
 
           <div className='header__button'>
-            <button className='btn1'>Your work Email</button>
-            <div className='btn2__container'>
-              <button className='btn2'>START FOR FREE !</button>
-              <p className='btn2__text'>14-dat PRO trial included</p>
-            </div>
+           
+            <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
+            <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+            
           </div>
 
           <div className='Signin__google'>
@@ -242,11 +241,8 @@ const Home = () => {
         </h2>
 
         <div className='header__button'>
-          <button className='btn1'>Your work Email</button>
-          <div className='btn2__container'>
-            <button className='btn2'>START FOR FREE !</button>
-            <p className='btn2__text'>14-day PRO trial included</p>
-          </div>
+            <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
+            <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
         </div>
 
         <div className='Signin__google'>
