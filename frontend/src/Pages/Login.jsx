@@ -58,7 +58,6 @@ const Login = () => {
 
           <p className="text-sm font-semibold mt-5 hover:text-gray-500  hover:cursor-pointer">Terms of services / <span className="text-xs text-gray-500 underline underline-offset-1 md:mb-18"> Privacy Policy</span> </p> 
     </div>
-  
    </div>
   );
 };
