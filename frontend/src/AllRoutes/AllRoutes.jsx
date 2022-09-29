@@ -5,6 +5,7 @@ import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
 import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
 import Login from "../Pages/Login";
+import Projects from "../Pages/PrivatePages/Projects/Projects";
 import Signup from "../Pages/Signup";
 
 const AllRoutes = () => {
@@ -16,9 +17,14 @@ const AllRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
         {/* featurespages */}
-        <Route path="/features/attendancetracking" element={<Attendancetracking />} />
+        <Route
+          path="/features/attendancetracking"
+          element={<Attendancetracking />}
+        />
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
-        
+
+        {/* Private routes */}
+        <Route path="/projects" element={<Projects />} />
       </Routes>
     </div>
   );
