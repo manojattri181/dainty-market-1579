@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Home from "./Home/Home"
 const HomePage = () => {
   return (
-    <div>Welcome to Construct Week</div>
+    <div>
+      <Home />
+    </div>
   )
 }
 
