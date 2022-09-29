@@ -99,10 +99,13 @@
     /* border: 1px solid; */
     padding: 0px;
     margin-right: 10px;
+    margin-top: 10px;
 }
 .Signin__google-link{
     font-size: 1rem;
     color: black;
+    z-index: 1;
+    margin-top: 10px;
 }
 
 .Signin__google-link:hover{
@@ -199,6 +202,7 @@
     grid-template-columns: repeat(3,1fr);
     justify-items: center;
     margin: auto;
+   
     /* gap: 1rem; */
 }
 
@@ -211,6 +215,7 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     border-radius: .875rem;
     padding: 1rem;
+    background-color: white;
 
 }
 

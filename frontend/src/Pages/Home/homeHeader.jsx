@@ -1,6 +1,7 @@
 import "./home.css"
 import React from 'react'
-import {Box, Heading, Text, useMediaQuery, VStack}  from "@chakra-ui/react"
+import {Box, Button, Heading, Text, useMediaQuery, VStack}  from "@chakra-ui/react"
+import ButtonComp from "./ButtonComp"
 const Header = () => {
 
   const [isLargerThanHD, isDisplayingInBrowser, mobileView] = useMediaQuery([
@@ -29,6 +30,11 @@ const Header = () => {
                 Bring your productivity
                 to   the next level.
          </Text>
+         <Box display="flex" justifyContent="center" marginBottom="10px" gap="10px">
+         <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
+          <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+         </Box>
+        
         </Box>
       </VStack>)
     
@@ -50,10 +56,15 @@ const Header = () => {
               </Text>
       
              <Text fontSize="90px" color="#242954;" letterSpacing=".01em" 
-                                 fontWeight="700" textAlign="left">
+                                 fontWeight="700" textAlign="center">
                     Bring your productivity
                     to   the next level.
              </Text>
+
+             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" marginBottom="10px" gap="10px">
+                <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
+                <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+            </Box>
             </Box>
           </VStack>
           )
@@ -64,20 +75,25 @@ const Header = () => {
            
             <Box display="flex" flexWrap="wrap" flexDirection="column">
               <Text color="#ed565a;" fontWeight="bold" letterSpacing="2.52px"
-                 fontSize="8px" textAlign="center" margin="0 0 15px">
+                 fontSize="14px" textAlign="center" margin="0 0 15px">
                 TRACKINGTIME TIME TRACKER SOFTWARE
               </Text>
       
               <Text color="#242954;" fontWeight="800" letterSpacing="2.52px"
-                 fontSize="12px" textAlign="center" margin="0 0 15px" line-height=" 24px">
+                 fontSize="20px" textAlign="center" margin="0 0 15px" line-height=" 24px">
                 SET AND FORGET TIME TRACKING
               </Text>
       
-             <Text fontSize="90px" color="#242954;" 
+             <Text fontSize="80px" color="#242954;" 
                     fontWeight="700" textAlign="center" display="flex" flexWrap="wrap">
                     Bring your productivity
                     to   the next level.
              </Text>
+            
+             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" marginBottom="10px" gap="10px">
+                <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
+                <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+            </Box>
             </Box>
          
           )
