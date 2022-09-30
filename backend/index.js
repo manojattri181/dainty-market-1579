@@ -1,13 +1,19 @@
 const express = require("express");
 const { user } = require("./controllers/User.controllers");
 const {connection} = require("./config/db");
-const cors = require("cors");
+const { taskRoute } = require("./controllers/task.controller");
 const app =express();
 require("dotenv").config();
+const cors = require("cors")
+app.use(cors())
 
-app.use(cors());
 app.use(express.json());
+
+
+
 app.use("/user",user)
+app.use("/task", taskRoute)
+
 app.get("/",(req,res)=>{
     res.send("welcome to Backend Server of TrackingTime");
 })
