@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Attendancetracking from "../Pages/Features/Attendancetracking";
 import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
 import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
@@ -17,10 +16,7 @@ const AllRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
         {/* featurespages */}
-        <Route
-          path="/features/attendancetracking"
-          element={<Attendancetracking />}
-        />
+       
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
 
         {/* Private routes */}

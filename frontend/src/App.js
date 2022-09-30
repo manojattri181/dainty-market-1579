@@ -1,12 +1,16 @@
 import AllRoutes from "./AllRoutes/AllRoutes";
-import Monday from "./Pages/hours/weekly-modals/Monday";
+import Example from "./Pages/Navbar/FinalNavbar";
+
+import Navbar from "./Pages/Navbar/Navbar";
 
 function App() {
   return (
-    <div>   
-      {/* <AllRoutes /> */}
+    <div> 
     
-      <Monday />
+      <Example />
+    
+      <AllRoutes />
+
 
     </div>
   );

@@ -1,5 +1,7 @@
 .Home__container{
     background: #F6F8F9;
+    margin-top: 40px;
+    padding-top: 10px;
 }
 
 
@@ -425,7 +427,7 @@
     text-align: left;
     gap: 2rem;
     padding: 1rem;
-    margin-left: 10%;
+    margin-left: 4%;
 
 }
 

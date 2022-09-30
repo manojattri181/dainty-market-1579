@@ -31,8 +31,8 @@ const Header = () => {
                 to   the next level.
          </Text>
          <Box display="flex" justifyContent="center" marginBottom="10px" gap="10px">
-         <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
-          <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+         <ButtonComp words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
+          <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
          </Box>
         
         </Box>
