@@ -6,7 +6,9 @@ import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
 import Login from "../Pages/Login";
 import Projects from "../Pages/PrivatePages/Projects/Projects";
+import Reports from "../Pages/Reports/Reports";
 import Signup from "../Pages/Signup";
+import TerminalNavbar from "../Pages/TerminalNavbar/TerminalNavbar";
 
 const AllRoutes = () => {
   return (
@@ -16,6 +18,7 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
+        
         {/* featurespages */}
         <Route
           path="/features/attendancetracking"
@@ -25,6 +28,8 @@ const AllRoutes = () => {
 
         {/* Private routes */}
         <Route path="/projects" element={<Projects />} />
+        {/* Terminal Routes */}
+        <Route path="/trackingtime/report" element={<Reports />} />
       </Routes>
     </div>
   );
