@@ -9,8 +9,8 @@ const Projects = () => {
       <div className="flex flex-row">
         <Sidebar />
         <div>
-          <div className="text-left">
-            <h2 className=" font-bold text-2xl mt-4 mb-6">
+          <div className="text-left  space-x-80 px-1.5">
+            <h2 className=" font-bold text-2xl mt-4 mb-2">
               Project A [Sample]
             </h2>
           </div>
