@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Attendancetracking from "../Pages/Features/Attendancetracking";
+import AttendanceTracking from "../Pages/Features/AttendanceTracking";
 import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
 import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
@@ -18,8 +18,8 @@ const AllRoutes = () => {
         <Route path="/integrations" element={<Integrations />} />
         {/* featurespages */}
         <Route
-          path="/features/attendancetracking"
-          element={<Attendancetracking />}
+          path="/features/attendanceTracking"
+          element={<AttendanceTracking />}
         />
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
 
