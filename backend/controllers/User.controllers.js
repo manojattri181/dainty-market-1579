@@ -5,30 +5,34 @@ const { UserModel } = require("../model/user.models");
 const user = express.Router();
 
 user.post("/signup", async (req,res)=>{
-    const {first_name,last_name,email,password} = req.body;
+    const passw = /^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,15}$/;
+    const {email,password} = req.body;
     let user_data = await UserModel.findOne({email:email});
     if(user_data){
-        res.send({msg:"email is already present"})
-    }else{
+        res.send({isError:{msg:"Email is already present"}})
+    }else if (!password.match(passw)) {
+          res.send({isError:{msg:"Password must be strong"}});
+    }
+    else{
         let user_password = await bcrypt.hash(password,4);
-        let user_details = new UserModel({email:email,password:user_password,first_name:first_name,last_name:last_name,role:"user"})
+        let user_details = new UserModel({email:email,password:user_password})
         await user_details.save();
-        res.status(200).send({msg:"Signup successfully"});
+        res.status(200).send({data:{msg:"Signup successfully"}});
     }
 })
+
 
 
 user.post("/login", async (req,res)=>{
     let {email,password} = req.body;
     let user_data = await UserModel.findOne({email:email});
-     let name = user_data.first_name+" "+user_data.last_name;
     let hash = user_data.password; 
     bcrypt.compare(password, hash, (err, result)=> {
         if(result){
             var token = jwt.sign({email:email}, `${process.env.secret_key}`,{expiresIn:"12h"});
-                res.status(200).send({data:{"msg":"Login successfull", "token" : token,"user_name":name}})
+                res.status(200).send({data:{"msg":"Login successfull", "token" : token}})
             }else{
-                res.send({msg:"Login Failed ,Please give correct email and password"});
+                res.send({data:{msg:"Login Failed ,Please give correct email and password"}});
             }
     });
 })
