@@ -51,7 +51,7 @@ const styles ={
 const logo1 = "https://trackingtime.co/wp-content/uploads/2020/07/Home-office-and-remote-working-solutions-for-team-collaboration.svg";
 
 
-const AttendanceTracking = () => {
+const Attendancetracking = () => {
     
     const [id,setId] = useState(0);
     const [status1, setStatus1] = useState(false)
@@ -218,4 +218,4 @@ const AttendanceTracking = () => {
   )
 }
 
-export default AttendanceTracking;
+export default Attendancetracking;
