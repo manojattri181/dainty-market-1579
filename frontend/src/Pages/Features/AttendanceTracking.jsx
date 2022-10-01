@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CSS from "../Features/Timetracker.module.css"
 import { Button, createIcon,Stack, HStack, Input, FormControl,Container, Box, Image,Text, VStack, Heading, border, textDecoration, Spacer, color} from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react'
+import { styles } from './styles';
 
 const img = [
     require("../Features/Images/google-key.png"),
@@ -27,31 +27,31 @@ export const img1=[
     require("../Features/Images/timetracking/img9-1.jpg"),
 ]
 
-const styles ={
-    cont:{
-        backgroundColor:"#f6f8f9",
-        width:"100%",
-        display:"flex",
-        flexDirection:"column"
-        },
-    logo1Div:{
-        width: "240px",
-    height: "146px",
-    margin: "0 auto",
-    marginTop: "52px",
-    marginBottom: "18px",
+// const styles ={
+//     cont:{
+//         backgroundColor:"#f6f8f9",
+//         width:"100%",
+//         display:"flex",
+//         flexDirection:"column"
+//         },
+//     logo1Div:{
+//         width: "240px",
+//     height: "146px",
+//     margin: "0 auto",
+//     marginTop: "52px",
+//     marginBottom: "18px",
 
-    },
-     logo1:{
-        Maxwidth:"100%",
-    },
-}
+//     },
+//      logo1:{
+//         Maxwidth:"100%",
+//     },
+// }
 
  
 const logo1 = "https://trackingtime.co/wp-content/uploads/2020/07/Home-office-and-remote-working-solutions-for-team-collaboration.svg";
 
 
-const Attendancetracking = () => {
+const AttendanceTracking = () => {
     
     const [id,setId] = useState(0);
     const [status1, setStatus1] = useState(false)
@@ -218,4 +218,4 @@ const Attendancetracking = () => {
   )
 }
 
-export default Attendancetracking;
+export default AttendanceTracking;

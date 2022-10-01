@@ -20,17 +20,11 @@ import {
   } from '@chakra-ui/react'
 
   import {useDisclosure} from "@chakra-ui/hooks"
-import { useEffect} from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { getApi, PostApi } from './Reducer/action'
-import {GrAdd, GrWifiNone} from "react-icons/gr"
-import Showdata from './Showadata'
 
-const AddTaskModel = ({week,date,day}) => {
+
+const AddTaskModel = ({week,date,day,icon}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    
-    
     const filterPassedTime = (time) => {
         const currentDate = new Date();
         const selectedDate = new Date(time);
@@ -39,59 +33,39 @@ const AddTaskModel = ({week,date,day}) => {
 
       
 
-      let milliseconds = Math.abs(endDate.getTime()-startDate.getTime())
+      let milliseconds = Math.abs(new Date(`${endDate}`).getTime()-new Date(`${startDate}`).getTime())
       let seconds = Math.floor(milliseconds / 1000);
       let minutes = Math.floor(seconds / 60);
       let hours = Math.floor(minutes / 60);
       minutes = (minutes % 60)
-      hours = hours % 24
-     
+      // let days = hours % 24
+      
+    
       let dispMinutes = minutes<10? `0${minutes}`: minutes
      
       let dispHours = hours<10? `0${hours}`: hours
       const [duration,setDuration] = useState(0)
-      let projects = ["one","two","three","Four"]
+      let projects = ["Project-A","Project-B","Project-C","Project-D"]
 
-     const [notes,SetNotes] = useState("")
-    // const {isAuth} = useSelector((state)=>state.login)
-    // const {data} = useSelector((state)=>state.task)
-    //  const dispatch = useDispatch() 
+     const [notes,SetNotes] = useState()
+    
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [project,setProject] = useState("")
    
 
-  const labelStyles = {
-    mt: '2',
-    ml: '-2.5',
-    fontSize: 'sm',
-  }
-
-  function handleStart(date)
-  {
-      setStartDate(date)
-      setDuration(`${dispHours}:${dispMinutes}`)
-      // console.log("s",startDate)
-  }
+const handlepost =()=>{
   
-  function handleEnd(date)
-  {
-      setEndDate(date);
-      setDuration(`${dispHours}:${dispMinutes}`)
-      setDuration(`${dispHours}:${dispMinutes}`)
-      // setTimeout(()=>{setDuration(`${dispHours}:${dispMinutes}`)},500)
-      // console.log(startDate>endDate)
-  }
   const datas ={
     project:project,
     startDate:startDate,
     endDate:endDate,
-    duration:duration,
+    duration:`${dispHours}:${dispMinutes}`,
     notes:notes,
     day:day,
     date:date,
+    status:false,
 }
-
-const handlepost =()=>{
+  
   setDuration(`${dispHours}:${dispMinutes}`)
   if(startDate>endDate){
     return alert("Task Invalid")
@@ -117,7 +91,7 @@ const handlepost =()=>{
       {/* <div className=" bg-teal-500 text-white rounded-md py-2 font-medium">Monday {week} </div> */}
       {/* <Showdata day={"monday"} /> */}
    
-        <Button onClick={onOpen} w="80%"  display='flex' margin="auto" ><GrAdd /></Button>
+        <Button onClick={onOpen} w="90%" h="15px" p="10px" display='flex' margin="auto" >{icon}</Button>
             <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -138,9 +112,11 @@ const handlepost =()=>{
                         <div className="flex justify-evenly  mb-2 mt-2 text-xs font-medium text-gray-900 dark:text-gray-400" >
                                 <div className="flex flex-col w-2/4"  >
                                 <h5 className="flex justify-center">Start Date/Time</h5>
-                                <DatePicker wrapperClassName="datePicker"    selected={startDate} onChange={handleStart} showTimeSelect filterTime={filterPassedTime}  dateFormat="MMMM d, yyyy h:mm aa"    />
+                                <DatePicker showTimeSelect dateFormat="MMMM d, yyyy h:mmaa" selected={startDate} selectsStart startDate={startDate} endDate={endDate} onChange={date => setStartDate(date)} />
+                                {/* <DatePicker wrapperClassName="datePicker"    selected={startDate} onChange={handleStart()} showTimeSelect filterTime={filterPassedTime}  dateFormat="MMMM d, yyyy h:mm aa"    /> */}
                                 <h5 className="flex justify-center">End Date/Time</h5>
-                                <DatePicker  selected={endDate}  onChange={handleEnd}   showTimeSelect  filterTime={filterPassedTime} dateFormat="MMMM d, yyyy h:mm aa" />
+                                <DatePicker showTimeSelect dateFormat="MMMM d, yyyy h:mmaa" selected={endDate} selectsEnd startDate={startDate} endDate={endDate} minDate={startDate} onChange={date => setEndDate(date)}/>
+                                {/* <DatePicker  selected={endDate}  onChange={handleEnd}   showTimeSelect  filterTime={filterPassedTime} dateFormat="MMMM d, yyyy h:mm aa" /> */}
                                 </div>
                                 <div className="flex flex-col justify-center items-center w-1/4 " style={{border:"1px solid black"}} >
                                 <h5 className="flex justify-center">Duration</h5>
