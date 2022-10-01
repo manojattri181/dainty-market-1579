@@ -8,7 +8,7 @@ const authentication = (req,res,next)=>{
         if(err){
             res.status(401).send("Please login to access the information")
         }else{
-            req.body.email = decoded.email;
+            req.body.user_id = decoded.user_id;
             next()
         }
      }) 

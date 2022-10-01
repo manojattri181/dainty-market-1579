@@ -1,0 +1,129 @@
+.navbar__container{
+    top: 0%;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    /* border: 1px solid  black; */
+    justify-content: space-between;
+    align-items: center;
+    /* margin: auto; */
+    /* margin-top: 0.475rem; */
+    background: #F6F8F9;
+    padding: 0px 200px 0px 200px;
+    z-index: 2;
+}
+
+.navbar__logo > img{
+    width: 11.875rem;
+
+}
+
+.navbar__buttons{
+    /* display: flex; */
+    gap: 2rem;
+}
+.navbar__tryit{
+    background-color: #F6F8F9;
+    border-color: #00AD95;
+    border-radius: 5px;
+    border: 2px solid #ff6d6a;
+    width:8.75rem;
+    height: 2rem;
+    border-width:0.12rem;
+    margin: auto;
+    color: #ff6d6a;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing:1px;
+}
+#Login__button{
+    background-color:#ff6d6a;
+    color: white;
+}
+#Login__button:hover{
+    background-color:#F6F8F9;
+     color: #00AD95;
+     cursor: pointer;
+     
+
+}
+.navbar__tryit:hover{
+    background-color: #ff6d6a;
+    color:#F6F8F9 ;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.navbar__links{
+    color: #2d2d31;
+    font-size: 12px;
+    text-decoration: none;
+    margin: auto;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .4s;
+    letter-spacing: 1.68px;
+}
+.navbar__links:hover{
+    color:#ff6d6a;
+}
+
+
+.feature__container{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.downIconUp{
+    transform: rotate(180deg);
+    transition: .3s;
+}
+.downIconDown{
+    transform: rotate(0deg);
+    transition: .3s;
+}
+
+.feature__menu{
+    width:250px;
+    /* height: 500px; */
+    /* border: 1px solid;  */
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    position: absolute;
+    /* padding: 1rem; */
+    left: 0;
+    top: 2.5rem;
+    background: white;
+    transition: 1s;
+    border-radius: 0.3rem;
+}
+.feature__menu-close{
+    display: none;
+    transition: 1s;
+}
+.feature__menu-open{
+    z-index: 3;
+}
+
+.feature__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    list-style: none;
+    /* border: 1px solid; */
+    text-align: left;
+    padding: 1rem;
+    font-weight: bold;
+    line-height: 2;
+    color: black;
+   
+}
+
+.Fitem{
+    font-weight: 1000;
+    font-size: 15px;
+}

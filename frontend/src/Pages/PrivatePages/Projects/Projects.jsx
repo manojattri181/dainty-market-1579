@@ -1,7 +1,9 @@
 import React from "react";
 import MidCols from "./MidCols";
-// import RightDrawer from "./RightDrawer";
 import Sidebar from "./Sidebar";
+
+import { DndProvider } from "react-dnd";
+// import HTML5Backend from "react-dnd-html5-backend";
 
 const Projects = () => {
   return (
@@ -16,7 +18,9 @@ const Projects = () => {
           </div>
           <div className="flex flex-row">
             <div>
-              <MidCols />
+              <DndProvider>
+                <MidCols />
+              </DndProvider>
             </div>
           </div>
         </div>
