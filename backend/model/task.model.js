@@ -8,6 +8,7 @@ const taskSchema = new mongoose.Schema({
     notes:String,
     day:String,
     date:String,
+    status:Boolean,
 },
 {
  versionKey:false
