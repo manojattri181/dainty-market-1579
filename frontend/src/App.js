@@ -1,8 +1,9 @@
 import AllRoutes from "./AllRoutes/AllRoutes";
+import Example from "./Pages/Navbar/FinalNavbar";
 
 function App() {
   return (
-    <div>   
+    <div>  
       <AllRoutes />
     </div>
   );
