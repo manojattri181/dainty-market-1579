@@ -51,10 +51,10 @@ const Navbar = () => {
             <Link to='/onlinetimesheet' className='navbar__links Fitem'>Online Timesheet</Link>
         </li>
         <li className='feature__item'>
-            <Link to='/timecards' className='navbar__links Fitem'>Time cards</Link>
+            <Link to='/features/timecards' className='navbar__links Fitem'>Time cards</Link>
         </li>
         <li className='feature__item'>
-            <Link to='/attendancetracking' className='navbar__links Fitem'>Attendance tracking</Link>
+            <Link to='/features/attendancetracking' className='navbar__links Fitem'>Attendance tracking</Link>
         </li>
           <li className='feature__item'>
               <Link to='/timereporting' className='navbar__links Fitem'>Time reporting</Link>

@@ -9,6 +9,7 @@ import Projects from "../Pages/PrivatePages/Projects/Projects";
 import Reports from "../Pages/Reports/Reports";
 import Signup from "../Pages/Signup";
 import Timecards from "../Pages/Features/Timecards"
+import AttendanceTracking from "../Pages/Features/Attendancetracking";
 
 
 const AllRoutes = () => {
@@ -19,7 +20,9 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
-        <Route path="/featues/timecards" element={<Timecards/>}/>
+        <Route path="/features/attendancetracking" element={<AttendanceTracking/>}/>
+        <Route path="/features/timecards" element={<Timecards/>}/>
+        
         {/* featurespages */}
         
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
