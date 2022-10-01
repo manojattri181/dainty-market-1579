@@ -47,6 +47,12 @@ const Sidebar = () => {
               colorScheme="gray"
               variant="outline"
               onClick={onOpen}
+              _hover={{
+                bg: "#c1c1c1",
+                color: "black",
+                fontWeight: "bolder",
+                border: "1px solid gray",
+              }}
               style={{
                 fontSize: "12px",
                 height: "24px",
@@ -203,6 +209,24 @@ const Sidebar = () => {
           </Box>
         </Flex>
       </aside>
+      <div className="px-2">
+        <nav>
+          <a
+            href="#"
+            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
+          >
+            <span>Project A</span>
+            <span class="text-xs font-semibold text-gray-700">Time</span>
+          </a>
+          <a
+            href="#"
+            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
+          >
+            <span>Project B</span>
+            <span class="text-xs font-semibold text-gray-700">Time</span>
+          </a>
+        </nav>
+      </div>
     </div>
   );
 };
