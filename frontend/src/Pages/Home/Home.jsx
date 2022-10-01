@@ -6,6 +6,8 @@ import { Heading, Box, Button} from '@chakra-ui/react';
 import headerImage from '../../Images/HeaderImage-Time.PNG';
 import SlideShowComp from './SlideShowComp';
 import ButtonComp from './ButtonComp';
+import timeLogo from "../../Images/timeLogo.PNG"
+
 const Home = () => {
   return (
     <div className='Home__container'>
@@ -206,8 +208,8 @@ const Home = () => {
 
           <div className='header__button'>
            
-            <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
-            <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+            <ButtonComp words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
+            <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
             
           </div>
 
@@ -230,8 +232,8 @@ const Home = () => {
       </div>
 
       <div className='getStarted__container'>
-        <img
-          src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/layout/footer/tt.svg'
+        <img style={{width:"77px", height:"71px", fill:'#f6f8f9', zIndex:"1", }}
+          src="https://trackingtime.co/wp-content/themes/trackingtime-v5/img/layout/footer/tt.svg"
           alt='sdf'
         />
         <h1>Get Started</h1>
@@ -241,8 +243,8 @@ const Home = () => {
         </h2>
 
         <div className='header__button'>
-            <ButtonComp words="Your Work Email" s="400px" bg="white" bord="0.5px solid black" />
-            <ButtonComp bg="#ed565a" words="Start For Free" s="400px" clr="white" hov="#646cc7" />
+            <ButtonComp words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
+            <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
         </div>
 
         <div className='Signin__google'>

@@ -1,17 +1,14 @@
 .Home__container{
     background: #F6F8F9;
+    margin-top: 60px;
+    padding-top: 10px;
 }
-
-
-
-
-
-
 .Header__container{
     max-width: 1163px;
     /* border: 1px solid black; */
     margin: auto;
     margin-top: 2rem;
+    top: 5%;
 }
 
 .header1,
@@ -425,7 +422,7 @@
     text-align: left;
     gap: 2rem;
     padding: 1rem;
-    margin-left: 10%;
+    margin-left: 4%;
 
 }
 
