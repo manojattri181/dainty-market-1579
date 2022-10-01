@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-// import Attendancetracking from "../Pages/Features/Attendancetracking";
+import Attendancetracking from "../Pages/Features/Attendancetracking";
 import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
 import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
@@ -10,6 +10,7 @@ import Reports from "../Pages/Reports/Reports";
 import Signup from "../Pages/Signup";
 import Timecards from "../Pages/Features/Timecards";
 
+
 const AllRoutes = () => {
   return (
     <div>
@@ -18,11 +19,13 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
-        <Route path="/featues/timecards" element={<Timecards />} />
+        
         {/* featurespages */}
-        {/* <Route path="/features/attendanceTracking" element={<AttendanceTracking />} /> */}
+        <Route path="/features/attendanceTracking" element={<AttendanceTracking />} /> 
+        <Route path="/features/timecards" element={<Timecards/>}/>
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
         {/* Private routes */}
+        
         <Route path="/projects" element={<Projects />} />
         {/* Terminal Routes */}
         <Route path="/trackingtime/report" element={<Reports />} />
