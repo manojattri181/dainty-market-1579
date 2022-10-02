@@ -114,6 +114,14 @@ const RightDrawer = () => {
               </ul>
             </div>
           </DrawerBody>
+          <DrawerFooter borderTopWidth="1px">
+            <Button variant="outline" mr={3} onClick={onClose}>
+              CANCEL
+            </Button>
+            <Button style={{ backgroundColor: "black", color: "white" }}>
+              SAVE
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </div>
