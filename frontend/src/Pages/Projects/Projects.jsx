@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MidCols from "./MidCols";
 import Sidebar from "./Sidebar";
-import TerminalNavbar from '../../TerminalNavbar/TerminalNavbar';
+import TerminalNavbar from '../TerminalNavbar/TerminalNavbar';
 import { useDispatch, useSelector } from "react-redux";
-import { GET_DATA } from "../../../Redux/AppReducer/action";
+import { GET_DATA } from "../../Redux/AppReducer/action";
 
 const Projects = () => {
   const dispatch = useDispatch();

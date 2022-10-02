@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import {GrFormClose} from "react-icons/gr";
 import { useDispatch} from "react-redux";
-import { GET_DATA, POST_DATA } from "../../../Redux/AppReducer/action";
+import { GET_DATA, POST_DATA } from "../../Redux/AppReducer/action";
 
 var now = new Date();
 const days = ["SU","MA","TU","WE","TH","FR","SA"];
@@ -20,6 +20,7 @@ const schema = {
     "startDate":"",
     "endDate":"",
 }
+
 const Projectdrawer = ({handleDrawer}) => {
     const [data,setData] = useState(schema);
     const dispatch =useDispatch();

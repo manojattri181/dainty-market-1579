@@ -1,37 +1,75 @@
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import './navbar.css'
+import { Link, useNavigate } from 'react-router-dom'
+import {RiArrowDropDownLine} from 'react-icons/ri'
+const Navbar = () => {
+  const [feature, setFeature] = useState(false);
+  const [downArrow, setArrow] = useState(false);
+  
+  let navigate = useNavigate();
 
-import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
-import HomePage from "../Pages/HomePage";
-import Integrations from "../Pages/Integrations/Integrations";
-import Login from "../Pages/Login";
-import Projects from "../Pages/PrivatePages/Projects/Projects";
-import Reports from "../Pages/Reports/Reports";
-import Signup from "../Pages/Signup";
-import Timecards from "../Pages/Features/Timecards";
-import Hours from "../Pages/hours/weekly-modals/Hours";
-import Attendance from "../Pages/Features/Attendence";
+ 
+  
+  const homepath = () => {
+    navigate('/');
+  };
 
-const AllRoutes = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/integrations" element={<Integrations />} />
 
-        {/* featurespages */}
-        <Route path="/features/attendancetracking" element={<Attendance />} /> 
-        <Route path="/features/timecards" element={<Timecards />} />
-        <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
 
-        {/* Private routes */}
-        <Route path="/hours" element={<Hours />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/reports" element={<Reports />} />
-      </Routes>
-    </div>
-  );
+    return (
+    <div className='navbar__container lg:flex '>
+          <div className='navbar__logo' onClick={homepath}>
+              <img src="https://trackingtime.co/wp-content/themes/trackingtime-v5/img/layout/header/logo.svg" className=' m-auto h-10 w-48 my-3 hover:cursor-pointer' alt="logo" />
+          </div>
+
+      <div className="navbar__buttons text-sm lg:flex">
+              <Link to='/integrations' className='navbar__links '>INTEGRATIONS</Link>
+              <br />
+              <Link to='/blog' className='navbar__links '>BLOG</Link>
+              
+        <div className='feature__container'>
+                  
+        <div style={{ display: 'flex', justifyContent: 'center',alignItems:'center' }}>
+            <p style={{display:"flex"}} className='navbar__links' onMouseEnter={() => setFeature(!feature)} 
+            >FEATURES
+           </p>  <img width="16px" height="1px" src="https://trackingtime.co/wp-content/themes/trackingtime-v5/img/home/arrow-icon.png" alt="" />
+            
+        </div>
+        
+
+                  
+<div onMouseLeave={()=>setFeature(false)
+            } className={feature ? "feature__menu feature__menu-open" : "feature__menu feature__menu-close"}>
+    <ul className='feature__list'>
+        <li className='feature__item'>
+            <Link to='' className='navbar__links Fitem'>Time Tracker</Link>
+        </li>
+        <li className='feature__item'>
+            <Link to='' className='navbar__links Fitem'>Project Management</Link>
+        </li>
+        <li className='feature__item'>
+            <Link to='/features/onlinetimesheet' className='navbar__links Fitem'>Online Timesheet</Link>
+        </li>
+        <li className='feature__item'>
+            <Link to='/features/timecards' className='navbar__links Fitem'>Time cards</Link>
+        </li>
+        <li className='feature__item'>
+            <Link to='/features/attendancetracking' className='navbar__links Fitem'>Attendance tracking</Link>
+        </li>
+          <li className='feature__item'>
+              <Link to='' className='navbar__links Fitem'>Time reporting</Link>
+          </li>
+      </ul>
+  </div>
+                </div>  
+              <button className='navbar__tryit '><Link to="/signup" >TRY IT FOR FREE </Link> </button>
+              <button className='navbar__tryit navbar__links' id='Login__button' ><Link to="login"> Login </Link></button>
+              </div>
+        
+ </div>
+
+  )
 };
 
-export default AllRoutes;
+
+export default Navbar;

@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import Projectdrawer from "./Projectdrawer";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_DATA } from "../../../Redux/AppReducer/action";
+import { GET_DATA } from "../../Redux/AppReducer/action";
 
 const Sidebar = ({storeprojects}) => {
   
