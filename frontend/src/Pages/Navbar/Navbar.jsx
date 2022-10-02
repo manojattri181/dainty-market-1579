@@ -45,7 +45,7 @@ const Navbar = () => {
             <Link to='/timetracker' className='navbar__links Fitem'>Time Tracker</Link>
         </li>
         <li className='feature__item'>
-            <Link to='/projects' className='navbar__links Fitem'>Project Management</Link>
+            <Link to='/' className='navbar__links Fitem'>Project Management</Link>
         </li>
         <li className='feature__item'>
             <Link to='/features/onlinetimesheet' className='navbar__links Fitem'>Online Timesheet</Link>
@@ -57,13 +57,14 @@ const Navbar = () => {
             <Link to='/features/attendancetracking' className='navbar__links Fitem'>Attendance tracking</Link>
         </li>
           <li className='feature__item'>
-              <Link to='/timereporting' className='navbar__links Fitem'>Time reporting</Link>
+              <Link to='/' className='navbar__links Fitem'>Time reporting</Link>
           </li>
       </ul>
   </div>
-                </div>  
-              <button className='navbar__tryit '><Link to="/signup" >TRY IT FOR FREE </Link> </button>
-              <button className='navbar__tryit navbar__links' id='Login__button' ><Link to="login"> Login </Link></button>
+                </div>
+                  
+                <Link to="/signup" ><button className='navbar__tryit '>TRY IT FOR FREE  </button></Link>
+                <Link to="login"><button className='navbar__tryit navbar__links' id='Login__button' >Login </button></Link>
               </div>
         
  </div>
