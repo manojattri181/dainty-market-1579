@@ -1,4 +1,5 @@
 import React from "react";
+import Kanban from "./Kanban";
 import RightDrawer from "./RightDrawer";
 
 const MidCols = () => {
@@ -65,6 +66,10 @@ const MidCols = () => {
         <div>
           <RightDrawer />
         </div>
+      </div>
+      {/* <div style={{ border: "2px solid red", height: "90vh" }}> */}
+      <div>
+        <Kanban />
       </div>
     </>
   );

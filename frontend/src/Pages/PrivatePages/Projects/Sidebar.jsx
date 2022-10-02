@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -18,16 +18,18 @@ import {
   Stack,
   FormLabel,
   Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
   Select,
   Textarea,
 } from "@chakra-ui/react";
+import { MdSettingsBackupRestore } from "react-icons/md";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
+  const [task, setTask] = useState("");
+  const [project, setProject] = useState([]);
+
+  function handleAdd(task) {}
   return (
     <div className="bg-gray-100 min-h-screen">
       <aside className="w-64 ml-4" aria-label="Sidebar">
@@ -98,7 +100,8 @@ const Sidebar = () => {
                       >
                         <input
                           type="checkbox"
-                          value=""
+                          value={task}
+                          onChange={(e) => setTask(e.target.value)}
                           id="small-toggle"
                           class="sr-only peer"
                           checked
@@ -129,7 +132,10 @@ const Sidebar = () => {
                   <Button variant="outline" mr={3} onClick={onClose}>
                     CANCEL
                   </Button>
-                  <Button style={{ backgroundColor: "black", color: "white" }}>
+                  <Button
+                    onClick={() => handleAdd(task)}
+                    style={{ backgroundColor: "black", color: "white" }}
+                  >
                     SAVE
                   </Button>
                 </DrawerFooter>
