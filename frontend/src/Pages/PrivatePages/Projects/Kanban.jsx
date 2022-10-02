@@ -9,8 +9,6 @@ const itemsFromBackend = [
   { id: uuidv4(), content: "Fourth task" },
   { id: uuidv4(), content: "Fifth task" },
   { id: uuidv4(), content: "Sixth task" },
-  { id: uuidv4(), content: "Seventh task" },
-  { id: uuidv4(), content: "Eighth task" },
 ];
 
 const columnsFromBackend = {
