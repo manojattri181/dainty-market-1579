@@ -11,7 +11,9 @@ let config = {
     }
   }
 
-
+// Get => /project 
+// /project/add => post
+// /project/id  =>delete patch 
 
 export const GET_DATA = () => (dispatch)=>{
     dispatch({type:types.GETDATA_REQUEST});

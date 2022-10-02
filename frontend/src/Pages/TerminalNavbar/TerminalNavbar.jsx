@@ -34,6 +34,7 @@ const TerminalNavbar = () => {
                 </Link>
       
       <div className="relative">
+
         <button className="w-fit px-2 py-2 font-bold text-sm  text-gray-700 rounded-md hover:bg-gray-200    hover:cursor-pointer" onMouseOver={()=>setReports(true)}  onMouseLeave={()=>setReports(false)}>Reports</button>
       { reports &&   <div className="absolute z-30">
           <div className="w-48  pb-1 z-40 -ml-14 rounded-xl bg-white justify-center items-center shadow shadow-gray-300 "  onMouseOver={()=>setReports(true)} onMouseLeave={()=>setReports(false)}>

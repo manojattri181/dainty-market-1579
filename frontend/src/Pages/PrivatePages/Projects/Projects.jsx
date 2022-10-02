@@ -1,11 +1,14 @@
 import React from "react";
 import MidCols from "./MidCols";
 import Sidebar from "./Sidebar";
+import TerminalNavbar from '../../TerminalNavbar/TerminalNavbar';
 
 const Projects = () => {
   return (
     <>
+       <TerminalNavbar />
       <div className="flex flex-row">
+
         <Sidebar />
         <div>
           <div className="text-left  space-x-80 px-1.5">

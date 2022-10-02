@@ -124,9 +124,11 @@ const Reports = () => {
                           {items.endTime}
                       </td>
                   </tr>
-                ))
-              }
-              {drawer && <Drawer  handleDrawer={handleDrawer} /> }
+    
+    
+    ))
+  }
+  {drawer && <Drawer  handleDrawer={handleDrawer}/> }
               </tbody>
           </table>
       </div>
