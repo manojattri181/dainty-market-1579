@@ -14,20 +14,6 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-// import DatePicker from "react-datepicker";
-import "../../hours/weekly-modals/modal.modular.css";
-
-import "react-datepicker/dist/react-datepicker.css";
-// import { v4 } from "uuid";
-// import {
-//   Modal,
-//   ModalOverlay,
-//   ModalContent,
-//   ModalHeader,
-//   ModalFooter,
-//   ModalBody,
-//   ModalCloseButton,
-// } from "@chakra-ui/react";
 
 const RightDrawer = ({ week, date, day, icon }) => {
   const btnRef = React.useRef();
