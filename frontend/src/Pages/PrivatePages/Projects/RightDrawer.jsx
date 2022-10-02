@@ -95,7 +95,22 @@ const RightDrawer = ({ week, date, day, icon }) => {
     <div>
       <Button style={{ marginRight: "1rem" }}>All tasks</Button>
       <Button ref={btnRef} colorScheme="gray" onClick={onOpen}>
-        + Tasks
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            fill="black"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </span>{" "}
+        <span> Tasks</span>
       </Button>
 
       <Drawer
