@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Button, createIcon,Stack, HStack, Input, FormControl,Container, Box, Image,Text, VStack, Heading, border, textDecoration, Spacer, color} from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react'
+import Example from '../Navbar/FinalNavbar';
+import Footer from '../Footer/Footer';
 
 const img = [
     require("../Features/Images/google-key.png"),
@@ -214,6 +216,7 @@ const Timecards = () => {
     
   return (
     <Box>
+        <Example />
 
             <Box style={styles.cont} className={CSS.cont} >
                 
@@ -331,6 +334,7 @@ const Timecards = () => {
                     </Stack>
 
                 </Box>
+            <Footer />
     </Box>
   )
 }
