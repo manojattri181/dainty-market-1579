@@ -11,10 +11,6 @@ let config = {
     }
   }
 
-// Get => /project 
-// /project/add => post
-// /project/id  =>delete patch 
-
 export const GET_DATA = () => (dispatch)=>{
     dispatch({type:types.GETDATA_REQUEST});
     return axios.get("http://localhost:8080/project",config).then((res)=>{
@@ -24,3 +20,18 @@ export const GET_DATA = () => (dispatch)=>{
     })
 }
 
+
+export const PATCH_DATA = ({id,payload}) => (dispatch)=>{
+  return axios.patch(`http://localhost:8080/project/${id}`,payload,config).then((res)=>{
+       alert("Updated Successfully")
+  })
+}
+
+
+export const DELETE_DATA = (id) => (dispatch)=>{
+  return axios.delete(`http://localhost:8080/project/${id}`,config).then((res)=>{
+    alert("Project Deleted Successfully")
+  }).catch((err)=>{
+    console.log(err)
+  })
+}
