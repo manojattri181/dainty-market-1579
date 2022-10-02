@@ -20,6 +20,15 @@ export const GET_DATA = () => (dispatch)=>{
     })
 }
 
+export const POST_DATA = (payload) => (dispatch)=>{
+  return axios.post("http://localhost:8080/project/add",payload,config).then((res)=>{
+    console.log(res.data);
+    alert("Project created successfull")
+  }).catch((err)=>{
+    console.log(err)
+    alert("error while creating project")
+  })
+}
 
 export const PATCH_DATA = ({id,payload}) => (dispatch)=>{
   return axios.patch(`http://localhost:8080/project/${id}`,payload,config).then((res)=>{

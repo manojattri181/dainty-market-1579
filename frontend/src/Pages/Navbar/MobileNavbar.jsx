@@ -1,7 +1,8 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton,
      DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, HStack, 
-     Image, Input, Link, Text, useDisclosure, useMediaQuery } from "@chakra-ui/react"
+     Image, Input,  Text, useDisclosure, useMediaQuery } from "@chakra-ui/react"
 import React, {useRef} from "react"
+import {Link} from "react-router-dom"
 import ButtonComp from "../Home/ButtonComp"
 import { GiHamburgerMenu } from "react-icons/gi"
 
@@ -18,14 +19,14 @@ function DrawerExample() {
         return (
         
           <HStack display="flex" justifyContent="space-between" width="100%"  height="60px" 
-          position="fixed" top="0%"  backgroundColor="#F6F8F9" zIndex="3" flexWrap="wrap"
+          position="fixed" top="0%"  backgroundColor="#F6F8F9" zIndex="3" flexShrink="2" boxSizing="border-box"
           paddingLeft="20px" paddingRight="60px">
               <Box>
                   <Image width="200px"
                    src="https://trackingtime.co/wp-content/themes/trackingtime-v5/img/layout/header/logo.svg"
                     />
               </Box>
-  
+              
               <Box>
               <Button ref={btnRef}  onClick={onOpen}>
             <GiHamburgerMenu fill="black" size="30px"/>
@@ -45,21 +46,21 @@ function DrawerExample() {
                     />
               </DrawerHeader>
               <DrawerBody lineHeight="3.2">
-                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link  style={{textDecoration:"none"}}> Integrations </Link> </Text>
-                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link style={{textDecoration:"none"}}> Blog         </Link> </Text>
-                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link style={{textDecoration:"none"}}> Features     </Link> </Text>
+                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link to="/integrations"  style={{textDecoration:"none"}}> Integrations </Link> </Text>
+                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link to="/blog" style={{textDecoration:"none"}}> Blog         </Link> </Text>
+                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link  style={{textDecoration:"none"}}> Features     </Link> </Text>
                 <Box
                  marginLeft="10px"
                  lineHeight="3.4" >
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Time Tracker       </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Project Management </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Online Timesheet   </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}}  >Timecard           </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}}  >Time Tracker       </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Project Management </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/features/onlinetimesheet" >Online Timesheet   </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link to="/features/timecards" style={{textDecoration:"none"}}  >Timecard           </Link>  </Text>
                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Attendance Tracking</Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Time Reporting     </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Time Reporting     </Link>  </Text>
 
-                  <ButtonComp words="Your Work Email" s="210px" bg="white" bord="0.5px solid black" />
-                  <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
+                  <ButtonComp refer="/signup" words="Your Work Email" s="210px" bg="white" bord="0.5px solid black" />
+                  <ButtonComp refer="/login" bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
   
                 </Box>
               </DrawerBody>
@@ -79,7 +80,7 @@ function DrawerExample() {
       else if(isLargerThan300){
         return (
        
-          <HStack display="flex" justifyContent="space-between"   height="60px" width="auto" 
+          <HStack display="flex" justifyContent="space-between"   height="60px" width="480px" 
           position="fixed" top="0%"  backgroundColor="#F6F8F9" zIndex="3" flexWrap="wrap"
           paddingLeft="20px" paddingRight="10px">
               <Box>
@@ -107,20 +108,21 @@ function DrawerExample() {
                     />
               </DrawerHeader>
               <DrawerBody lineHeight="3.2">
-              <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link style={{textDecoration:"none"}}> Integrations </Link> </Text>
-                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link style={{textDecoration:"none"}}> Blog         </Link> </Text>
-                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link style={{textDecoration:"none"}}> Features     </Link> </Text>
+              <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link to="/integrations"  style={{textDecoration:"none"}}> Integrations </Link> </Text>
+                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link to="/blog" style={{textDecoration:"none"}}> Blog         </Link> </Text>
+                <Text color="#242954" _hover={{color:"#ed565a", cursor:"pointer"}}  fontWeight="bold"><Link  style={{textDecoration:"none"}}> Features     </Link> </Text>
                 <Box
                  marginLeft="10px"
                  lineHeight="3.4" >
-                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Time Tracker       </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Project Management </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Online Timesheet   </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Timecard           </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Attendance Tracking</Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} >Time Reporting     </Link>  </Text>
-                  <ButtonComp words="Your Work Email" s="210px" bg="white" bord="0.5px solid black" />
-                  <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}}  >Time Tracker       </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Project Management </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/features/onlinetimesheet" >Online Timesheet   </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link to="/features/timecards" style={{textDecoration:"none"}}  >Timecard           </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Attendance Tracking</Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Time Reporting     </Link>  </Text>
+
+                  <ButtonComp refer="/signup" words="Your Work Email" s="210px" bg="white" bord="0.5px solid black" />
+                  <ButtonComp refer="/login" bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
   
                 </Box>
               </DrawerBody>

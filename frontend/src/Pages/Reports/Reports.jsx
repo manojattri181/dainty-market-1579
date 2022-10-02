@@ -24,10 +24,9 @@ const Reports = () => {
 
    useEffect(()=>{
      dispatch(GET_DATA());
-   },[data])
+   },[])
 
-   
-
+  
   return (
     <div>
       <TerminalNavbar />
