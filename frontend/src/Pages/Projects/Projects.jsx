@@ -1,17 +1,16 @@
 import React from "react";
 import MidCols from "./MidCols";
 import Sidebar from "./Sidebar";
-import TerminalNavbar from '../../TerminalNavbar/TerminalNavbar';
+import TerminalNavbar from "../TerminalNavbar/TerminalNavbar";
 
 const Projects = () => {
   return (
     <>
-       <TerminalNavbar />
+      <TerminalNavbar />
       <div className="flex flex-row">
-
         <Sidebar />
         <div>
-          <div className="text-left  space-x-80 px-1.5">
+          <div className="text-left  space-x-80 px-8">
             <h2 className=" font-bold text-2xl mt-4 mb-2">
               Project A [Sample]
             </h2>
