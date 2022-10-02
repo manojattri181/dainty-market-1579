@@ -18,6 +18,14 @@ import {
 const RightDrawer = () => {
   const btnRef = React.useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [data, setData] = useState(null);
+  const [task, setTask] = useState(false);
+
+  function getData(val) {
+    console.log(val.target.value);
+    setData(val.target.value);
+    setTask(false);
+  }
 
   return (
     <div>
@@ -55,7 +63,7 @@ const RightDrawer = () => {
           </DrawerHeader>
 
           <DrawerBody style={{ fontWeight: "bold" }}>
-            <Input placeholder="Task name" />
+            <Input placeholder="Task name" onChange={getData} />
             <Text
               style={{
                 fontSize: "12px",
@@ -113,12 +121,31 @@ const RightDrawer = () => {
                 </li>
               </ul>
             </div>
+            <div>
+              {" "}
+              <Text
+                style={{
+                  fontSize: "12px",
+                  color: "gray",
+                  marginTop: "10px",
+                }}
+              >
+                <Flex style={{ flexDirection: "column" }}>
+                  <Box>Attachments</Box>
+                  <Box>Estimated Time</Box>
+                  <Box>Add custom field</Box>
+                </Flex>
+              </Text>
+            </div>
           </DrawerBody>
           <DrawerFooter borderTopWidth="1px">
             <Button variant="outline" mr={3} onClick={onClose}>
               CANCEL
             </Button>
-            <Button style={{ backgroundColor: "black", color: "white" }}>
+            <Button
+              style={{ backgroundColor: "black", color: "white" }}
+              onClick={() => setTask(true)}
+            >
               SAVE
             </Button>
           </DrawerFooter>
