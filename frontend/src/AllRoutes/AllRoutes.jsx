@@ -9,6 +9,7 @@ import Reports from "../Pages/Reports/Reports";
 import Signup from "../Pages/Signup";
 import Timecards from "../Pages/Features/Timecards";
 import AddTaskModel from "../Pages/hours/weekly-modals/AddTaskModel";
+import Hours from "../Pages/hours/weekly-modals/Hours";
 
 const AllRoutes = () => {
   return (
@@ -25,10 +26,8 @@ const AllRoutes = () => {
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
 
         {/* Private routes */}
-        <Route path="/taskModal" element={<AddTaskModel />} />
+        <Route path="/hours" element={<Hours />} />
         <Route path="/projects" element={<Projects />} />
-
-        {/* Terminal Routes */}
         <Route path="/reports" element={<Reports />} />
       </Routes>
     </div>

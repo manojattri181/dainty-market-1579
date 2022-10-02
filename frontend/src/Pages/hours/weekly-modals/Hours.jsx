@@ -1,5 +1,6 @@
 import React from "react";
 import ParticularDay from "./ParticularDay";
+import TerminalNavbar from '../../TerminalNavbar/TerminalNavbar';
 
 const Hours = () => {
   let curr = new Date();
@@ -12,6 +13,8 @@ const Hours = () => {
   let day = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
 
   return (
+     <>
+     <TerminalNavbar/>
     <div className="flex items-start justify-evenly w-100%  m-auto gap-2 border border-inherit p-2">
       <ParticularDay week={week[0].split("-")[2]} day={day[0]} date={week[0]} />
       <ParticularDay week={week[1].split("-")[2]} day={day[1]} date={week[1]} />
@@ -21,6 +24,7 @@ const Hours = () => {
       <ParticularDay week={week[5].split("-")[2]} day={day[5]} date={week[5]} />
       <ParticularDay week={week[6].split("-")[2]} day={day[6]} date={week[6]} />
     </div>
+     </>
   );
 };
 

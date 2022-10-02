@@ -18,11 +18,3 @@ const TaskModel = mongoose.model("task",taskSchema);
 
 module.exports = {TaskModel};
 
-// // const datas ={
-// //     project:project,
-// startDate:startDate,
-// endDate:endDate,
-// duration:duration,
-// notes:notes,
-// day:"monday""
-// // }

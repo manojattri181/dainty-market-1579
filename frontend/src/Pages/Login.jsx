@@ -27,7 +27,7 @@ const Login = () => {
                      setError(true);
                     }else if(msg?.includes("successfull")){
                          setError(false);
-                         navigate("/");
+                         navigate("/hours");
                     }
                }
      },[msg,error])
