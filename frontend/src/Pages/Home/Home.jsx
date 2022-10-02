@@ -208,8 +208,8 @@ const Home = () => {
 
           <div className='header__button'>
            
-            <ButtonComp words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
-            <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
+            <ButtonComp refer="/signup" words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
+            <ButtonComp refer="/login" bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
             
           </div>
 
@@ -243,8 +243,8 @@ const Home = () => {
         </h2>
 
         <div className='header__button'>
-            <ButtonComp words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
-            <ButtonComp bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
+            <ButtonComp refer="/signup" words="Your Work Email" s="265px" bg="white" bord="0.5px solid black" />
+            <ButtonComp refer="/login" bg="#ed565a" words="Start For Free" s="210px" clr="white" hov="#646cc7" />
         </div>
 
         <div className='Signin__google'>
