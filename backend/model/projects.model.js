@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
+const { taskSchema } = require("./task.model");
 
 const ProjectSchema = new mongoose.Schema({
+    
     "project":{type:String,required:true},
     "status":{type:Boolean,default:false},
-    "tasks": { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'task' },
+    "tasks": [{ type : mongoose.Schema.Types.ObjectId, ref: 'task' }],
     "client":{type:String},
     "notes":{type:String},
     "duration":{type:String},

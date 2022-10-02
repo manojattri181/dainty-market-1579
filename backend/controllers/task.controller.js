@@ -11,9 +11,18 @@ taskRoute.get("/",async (req,res)=>{
 
 
 taskRoute.post("/addTask", async(req,res)=>{
+    var taskId
     let newTask = new TaskModel(req.body);
-    await newTask.save();
-    res.status(200).json({"msg":"Task Added Sucessfully"})
+    await newTask.save((err, room) => {
+        if (err) return `Error occurred while saving ${err}`;
+      
+        const { _id } = room;
+        // console.log(`New room id: ${_id}`);
+      
+        // return room;
+        res.status(200).json({"msg":"Task Added Sucessfully","taskId": _id})
+      });
+    
 })
 
 taskRoute.patch("/update/:taskid", async(req,res)=>{
@@ -31,6 +40,7 @@ taskRoute.delete("/delete/:taskid", async(req,res)=>{
    
     try{
         await TaskModel.findByIdAndDelete(req.params.taskid)
+        // res.send({data:{msg:"task deleted sucessfully"}})
         res.status(200).json({"msg":"Task Deleted Sucessfully"})
     }
     catch(err){

@@ -1,10 +1,16 @@
 import { DeleteIcon } from "@chakra-ui/icons";
+import { Alert, AlertIcon } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_DATA } from "../../../Redux/AppReducer/action";
 
 const Showdata = ({ week, day, date }) => {
-  const [task, setTask] = useState([]);
+  const [alertStatus, setAlertStatus] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
+  const [task, setTask] = useState([]);
+  
   function getTask() {
     fetch("http://localhost:8080/task")
       .then((res) => res.json())
@@ -16,25 +22,38 @@ const Showdata = ({ week, day, date }) => {
 
   useEffect(() => {
     getTask();
-    // console.log("task", task)
+     // console.log("task", task)
   }, []);
+
+  
 
   let p = task.filter((el) => el.day === day && el.date === date);
   // console.log(p)
 
   const handleDelete = (e) => {
+    console.log(e._id)
+    let taskId = e._id
     fetch(`http://localhost:8080/task/delete/${e._id}`, {
       method: "DELETE",
       // headers:{
       //     "content-type":"application/json"
       // },
-      // body:JSON.stringify(e._id)
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res.msg))
+      // body:JSON.stringify(e._id)setTimeout(()=>{setAlertMsg(res.msg)},500)
+    }).then((res) => res.json())
+      .then((res) => {console.log("1",res.msg);setAlertMsg(res.msg);setTimeout(()=>{setAlertStatus(true)},500)})
       .catch((err) => console.log(err));
 
-    window.location.reload();
+    fetch(`http://localhost:8080/project/deletetask/${e.projectId}`, {
+      method: "DELETE",
+      headers:{
+          "content-type":"application/json"
+      },
+      body:JSON.stringify({taskId})
+    }).then((res) => res.json())
+      .then((res) => {console.log("2",res.msg);})
+      .catch((err) => console.log(err));
+
+      setTimeout(()=>{window.location.reload()},1000);
   };
 
   function getTime(str) {
@@ -55,14 +74,16 @@ const Showdata = ({ week, day, date }) => {
       body: JSON.stringify({ ...e, status: !e.status }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res.msg))
+      .then((res) => {console.log("3",res.msg);setAlertMsg(res.msg);setTimeout(()=>{setAlertStatus(true)},500)})
       .catch((err) => console.log(err));
-    window.location.reload();
+    setTimeout(()=>{window.location.reload()},1000);
   }
+  
 
   return (
     <div key={Math.floor(1000 * Math.random())}>
       {/* <Button onClick={onOpen}  w="80%" h="10px"  display='flex' margin="auto" mb="5px" mt="5px" ></Button> */}
+      {alertStatus? <Alert  status='success' variant='left-accent' ><AlertIcon />  {alertMsg}</Alert>:""}
       {p.map((e) => (
         <div
           className=" rounded-xl px-2 py-2 my-2 hover:border border-black text-white"
@@ -84,7 +105,7 @@ const Showdata = ({ week, day, date }) => {
             <h5 className="font-mono">{e.duration}</h5>
           </div>
           {/* <div className=' text-sm'>{e.dis}</div> */}
-          <div className="flex justify-between">
+          <div className="flex justify-between cursor-pointer">
             <DeleteIcon
               onClick={(el) => handleDelete(e)}
               color="tomato"
@@ -94,7 +115,7 @@ const Showdata = ({ week, day, date }) => {
             />
 
             <button
-              className="text-sm font-mono font-semibold"
+              className="text-sm font-mono font-semibold cursor-pointer"
               onClick={() => handleToggle(e)}
               style={{ color: e.status ? "green" : "tomato" }}
             >

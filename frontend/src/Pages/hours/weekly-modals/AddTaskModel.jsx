@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "../weekly-modals/modal.modular.css";
 
@@ -21,11 +21,31 @@ import {
   SliderThumb,
   SliderMark,
   Editable,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 
 import { useDisclosure } from "@chakra-ui/hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_DATA } from "../../../Redux/AppReducer/action";
 
 const AddTaskModel = ({ week, date, day, icon }) => {
+  const [alertStatus, setAlertStatus] = useState(false);
+
+
+  const data = useSelector((store)=>store.AppReducer.data);
+  // console.log("data",data)
+  const dispatch = useDispatch();
+  const [info,setInfo] = useState([])
+  useEffect(() => {
+    dispatch(GET_DATA());
+    setInfo([...data])
+    // console.log("task", task)
+  }, []);
+
+  // console.log("info",info)
+
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const filterPassedTime = (time) => {
@@ -54,9 +74,12 @@ const AddTaskModel = ({ week, date, day, icon }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [project, setProject] = useState("");
 
-  const handlepost = () => {
+  const handlepost = async () => {
+    
+    // let {_id} = project.split(":")[1]
     const datas = {
-      project: project,
+      projectId:project.split(":")[1],
+      project: project.split(":")[0],
       startDate: startDate,
       endDate: endDate,
       duration: `${dispHours}:${dispMinutes}`,
@@ -71,23 +94,32 @@ const AddTaskModel = ({ week, date, day, icon }) => {
       return alert("Task Invalid");
     }
     console.log(datas);
-
-    fetch("http://localhost:8080/task/addtask", {
+    var taskId;
+    await fetch("http://localhost:8080/task/addtask", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(datas),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res.msg))
+    }).then((res) => res.json()).then((res) => {console.log(res);  taskId=res.taskId; console.log("t",taskId)}).catch((err) => console.log(err));
+    // console.log("hello", taskId)
+
+    fetch(`http://localhost:8080/project/addtask/${project.split(":")[1]}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body:JSON.stringify({taskId}),
+    }).then((res) => res.json())
+      .then((res) => {setAlertStatus(true) })
       .catch((err) => console.log(err));
 
-    window.location.reload();
+    setTimeout(()=>{window.location.reload()},1000)
   };
 
   return (
     <div>
+      
       {/* <div className=" bg-teal-500 text-white rounded-md py-2 font-medium">Monday {week} </div> */}
       {/* <Showdata day={"monday"} /> */}
 
@@ -104,8 +136,9 @@ const AddTaskModel = ({ week, date, day, icon }) => {
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{week} Monday</ModalHeader>
-          <ModalHeader>User Name</ModalHeader>
+          <ModalHeader>{week}</ModalHeader>
+          <ModalHeader></ModalHeader>
+          {alertStatus? <Alert status='success' variant='left-accent'><AlertIcon />  Task Added Successfully</Alert>:""}
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Box>
@@ -121,9 +154,9 @@ const AddTaskModel = ({ week, date, day, icon }) => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option value>Select Project</option>
-                {projects.map((el, i) => (
-                  <option key={i} value={el}>
-                    {el}
+                {data.map((el, i) => (
+                  <option key={i} value={`${el.project}:${el._id}`}>
+                    {el.project}
                   </option>
                 ))}
               </select>
@@ -134,6 +167,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
               <div className="flex justify-evenly  mb-2 mt-2 text-xs font-medium text-gray-900 dark:text-gray-400">
                 <div className="flex flex-col w-2/4">
                   <h5 className="flex justify-center">Start Date/Time</h5>
+                  <div className="border border-inhert">
                   <DatePicker
                     showTimeSelect
                     dateFormat="MMMM d, yyyy h:mmaa"
@@ -143,8 +177,11 @@ const AddTaskModel = ({ week, date, day, icon }) => {
                     endDate={endDate}
                     onChange={(date) => setStartDate(date)}
                   />
+                  </div>
+                  
                   {/* <DatePicker wrapperClassName="datePicker"    selected={startDate} onChange={handleStart()} showTimeSelect filterTime={filterPassedTime}  dateFormat="MMMM d, yyyy h:mm aa"    /> */}
                   <h5 className="flex justify-center">End Date/Time</h5>
+                  <div className="border border-inhert">
                   <DatePicker
                     showTimeSelect
                     dateFormat="MMMM d, yyyy h:mmaa"
@@ -155,11 +192,13 @@ const AddTaskModel = ({ week, date, day, icon }) => {
                     minDate={startDate}
                     onChange={(date) => setEndDate(date)}
                   />
+                  </div>
+                  
                   {/* <DatePicker  selected={endDate}  onChange={handleEnd}   showTimeSelect  filterTime={filterPassedTime} dateFormat="MMMM d, yyyy h:mm aa" /> */}
                 </div>
                 <div
-                  className="flex flex-col justify-center items-center w-1/4 "
-                  style={{ border: "1px solid black" }}
+                  className="flex flex-col justify-center items-center w-1/4 border border-inherit "
+                  
                 >
                   <h5 className="flex justify-center">Duration</h5>
                   {startDate < endDate ? (
@@ -192,6 +231,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+       
     </div>
   );
 };
