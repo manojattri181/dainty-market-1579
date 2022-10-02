@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import {
   Menu,
   MenuButton,
@@ -22,47 +21,32 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
+import Projectdrawer from "./Projectdrawer";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_DATA } from "../../../Redux/AppReducer/action";
 
-const Sidebar = () => {
+const Sidebar = ({storeprojects}) => {
+  
+  const [drawer,setDrawer] = useState(false);
+  
+  const handleDrawer =(prop)=>{
+    setDrawer(prop);
+   }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
   const [data, setData] = useState(null);
   const [project, setProject] = useState(false);
 
-  // useEffect(() => {
-  //   handleGetProjects();
-  // }, []);
-  // function getProjects() {
-  //   return axios.get("http://localhost:8080/project");
-  // }
-
-  // function handleGetProjects() {
-  //   getProjects()
-  //     .then((res) => {
-  //       setData(res.data);
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
-  // function addProject({ project }) {
-  //   return axios({
-  //     url: `http://localhost:8080/project`,
-  //     method: "POST",
-  //     data: { project },
-  //   });
-  // }
-  // function handleAdd(project) {
-  //   addProject({ project }).then(() => handleGetProjects());
-  // }
 
   function getData(val) {
     console.log(val.target.value);
     setData(val.target.value);
     setProject(false);
   }
+
+ 
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <aside className="w-64 ml-4" aria-label="Sidebar">
@@ -81,7 +65,7 @@ const Sidebar = () => {
             <Button
               colorScheme="gray"
               variant="outline"
-              onClick={onOpen}
+              onClick={()=>handleDrawer(true)}
               _hover={{
                 bg: "#c1c1c1",
                 color: "black",
@@ -252,47 +236,21 @@ const Sidebar = () => {
       </aside>
       <div className="px-2">
         <nav>
-          <a
-            href="#"
+          {
+            storeprojects &&  storeprojects?.map((items,i)=>(     
+         <a 
+           key ={i}
+            href=""
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
-            <span>Project A</span>
+            <span>{items.project}</span>
             <span class="text-xs font-semibold text-gray-700">0:00</span>
           </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Project B</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Project C</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Project D</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            {project ? (
-              <>
-                <span>{data}</span>
-                <span class="text-xs font-semibold text-gray-700">0:00</span>
-              </>
-            ) : null}
-          </a>
+          ))
+        }
         </nav>
       </div>
+      {drawer && <Projectdrawer  handleDrawer={handleDrawer}/> }
     </div>
   );
 };

@@ -3,12 +3,10 @@ const { TaskModel } = require("../model/task.model");
 
 const taskRoute = express.Router();
 
-
 taskRoute.get("/",async (req,res)=>{
      let data = await TaskModel.find();
      res.status(200).send(data)
 })
-
 
 taskRoute.post("/addTask", async(req,res)=>{
     let newTask = new TaskModel(req.body);
@@ -24,7 +22,6 @@ taskRoute.patch("/update/:taskid", async(req,res)=>{
     catch(err){
         res.status(404).json({"msg":err})
     }
-    
 })
 
 taskRoute.delete("/delete/:taskid", async(req,res)=>{

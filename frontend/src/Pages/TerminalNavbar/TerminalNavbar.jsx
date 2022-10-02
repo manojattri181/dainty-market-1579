@@ -24,7 +24,9 @@ const TerminalNavbar = () => {
   return (
     <div className='min-w-full h-10 px-4 py-3 flex justify-between items-center bg-gray-100'>
      <div className="flex items-center justify-start">
+          <Link to="/">
             <img  className="w-36" src={logo} alt="" />
+          </Link>
             <div className="w-fit flex pl-8 text-center items-center justify-start gap-x-2">
                 <Link to="/hours">
                    <p className="w-fit px-2 py-2 font-bold text-sm  text-gray-700 rounded-md hover:bg-gray-200   hover:cursor-pointer" >Hours</p>
