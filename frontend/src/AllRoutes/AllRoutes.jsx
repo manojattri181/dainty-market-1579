@@ -10,6 +10,7 @@ import Signup from "../Pages/Signup";
 import Timecards from "../Pages/Features/Timecards";
 import AddTaskModel from "../Pages/hours/weekly-modals/AddTaskModel";
 import Hours from "../Pages/hours/weekly-modals/Hours";
+import Blog from "../Pages/Blog/Blog";
 
 const AllRoutes = () => {
   return (
@@ -19,6 +20,8 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
+        <Route path="/blog" element={<Blog />} />
+
 
         {/* featurespages */}
         {/* <Route path="/features/attendancetracking" element={<Attendancetracking />} />  */}
