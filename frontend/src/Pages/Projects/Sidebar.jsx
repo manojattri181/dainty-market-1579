@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Menu,
   MenuButton,
@@ -21,18 +21,32 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
+import Projectdrawer from "./Projectdrawer";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_DATA } from "../../Redux/AppReducer/action";
 
-const Sidebar = () => {
+const Sidebar = ({storeprojects}) => {
+  
+  const [drawer,setDrawer] = useState(false);
+  
+  const handleDrawer =(prop)=>{
+    setDrawer(prop);
+   }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
   const [data, setData] = useState(null);
   const [project, setProject] = useState(false);
+
 
   function getData(val) {
     console.log(val.target.value);
     setData(val.target.value);
     setProject(false);
   }
+
+ 
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <aside className="w-64 ml-4" aria-label="Sidebar">
@@ -51,7 +65,7 @@ const Sidebar = () => {
             <Button
               colorScheme="gray"
               variant="outline"
-              onClick={onOpen}
+              onClick={()=>handleDrawer(true)}
               _hover={{
                 bg: "#c1c1c1",
                 color: "black",
@@ -63,28 +77,12 @@ const Sidebar = () => {
                 height: "24px",
                 lineHeight: "1.2",
                 px: "8px",
-                border: "1px solid gray",
                 fontWeight: "semibold",
                 bg: "#f5f6f7",
                 color: "#4b4f56",
               }}
             >
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  fill="black"
-                  class="bi bi-plus-lg"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-                  />
-                </svg>
-              </span>{" "}
-              <span>PROJECT</span>
+              + PROJECT
             </Button>
 
             <Drawer
@@ -238,47 +236,21 @@ const Sidebar = () => {
       </aside>
       <div className="px-2">
         <nav>
-          <a
-            href="#"
+          {
+            storeprojects &&  storeprojects?.map((items,i)=>(     
+         <a 
+           key ={i}
+            href=""
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
-            <span>Project A [Sample]</span>
+            <span>{items.project}</span>
             <span class="text-xs font-semibold text-gray-700">0:00</span>
           </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Project B</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Build Blog Website</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            <span>Build Tracking Time Website</span>
-            <span class="text-xs font-semibold text-gray-700">0:00</span>
-          </a>
-          <a
-            href="#"
-            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
-          >
-            {project ? (
-              <>
-                <span>{data}</span>
-                <span class="text-xs font-semibold text-gray-700">0:00</span>
-              </>
-            ) : null}
-          </a>
+          ))
+        }
         </nav>
       </div>
+      {drawer && <Projectdrawer  handleDrawer={handleDrawer}/> }
     </div>
   );
 };

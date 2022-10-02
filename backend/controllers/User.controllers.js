@@ -27,14 +27,18 @@ user.post("/login", async (req,res)=>{
     let {email,password} = req.body;
     let user_data = await UserModel.findOne({email:email});
     let hash = user_data.password; 
-    bcrypt.compare(password, hash, (err, result)=> {
-        if(result){
-            var token = jwt.sign({user_id:user_data._id}, `${process.env.secret_key}`,{expiresIn:"12h"});
+    if(hash){
+        bcrypt.compare(password, hash, (err, result)=> {
+            if(result){
+                var token = jwt.sign({user_id:user_data._id}, `${process.env.secret_key}`,{expiresIn:"12h"});
                 res.status(200).send({data:{"msg":"Login successfull", "token" : token}})
             }else{
                 res.send({data:{msg:"Login Failed ,Please give correct email and password"}});
             }
-    });
-})
+        });
+    }else{
+        res.send({data:{msg:"Login Failed ,Please give correct email and password"}});
+    }
+    })
 
 module.exports = {user}; 

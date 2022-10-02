@@ -20,17 +20,21 @@ const Login = () => {
           }
      })
 
+     function control(){
+          if(msg){
+               if( msg?.includes("Please")){
+                    setError(true);
+                   }else if(msg?.includes("successfull")){
+                        setError(false);
+                        navigate("/hours");
+                   }
+              }
+     }
+
 
      useEffect(()=>{
-           if(msg){
-                if( msg?.includes("Please")){
-                     setError(true);
-                    }else if(msg?.includes("successfull")){
-                         setError(false);
-                         navigate("/hours");
-                    }
-               }
-     },[msg,error])
+           control();
+     },[msg])
       
 
      const handleChange = (e)=>{
@@ -44,7 +48,6 @@ const Login = () => {
           console.log(data);
           dispatch(LOGIN(data))
      }
-     console.log(msg,error);
 
   return (
    <div className='w-full grid grid-cols-1  md:grid-cols-2'>
