@@ -4,12 +4,13 @@ import Onlinetimesheet from "../Pages/Features/OnlineTimeSheet";
 import HomePage from "../Pages/HomePage";
 import Integrations from "../Pages/Integrations/Integrations";
 import Login from "../Pages/Login";
-import Projects from "../Pages/PrivatePages/Projects/Projects";
+import Projects from "../Pages/Projects/Projects";
 import Reports from "../Pages/Reports/Reports";
 import Signup from "../Pages/Signup";
 import Timecards from "../Pages/Features/Timecards";
 import Hours from "../Pages/hours/weekly-modals/Hours";
 import Attendance from "../Pages/Features/Attendence";
+import Blog from "../Pages/Blog/Blog";
 
 const AllRoutes = () => {
   return (
@@ -19,6 +20,8 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/integrations" element={<Integrations />} />
+        <Route path="/blog" element={<Blog />} />
+
 
         {/* featurespages */}
         <Route path="/features/attendancetracking" element={<Attendance />} /> 
