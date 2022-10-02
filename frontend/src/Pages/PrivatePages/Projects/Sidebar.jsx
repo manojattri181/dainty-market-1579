@@ -26,36 +26,42 @@ import {
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
-  const [data, setData] = useState([]);
-  const [project, setProject] = useState("");
+  const [data, setData] = useState(null);
+  const [project, setProject] = useState(false);
 
-  useEffect(() => {
-    handleGetProjects();
-  }, []);
-  function getProjects() {
-    return axios.get("http://localhost:8080/project");
-  }
+  // useEffect(() => {
+  //   handleGetProjects();
+  // }, []);
+  // function getProjects() {
+  //   return axios.get("http://localhost:8080/project");
+  // }
 
-  function handleGetProjects() {
-    getProjects()
-      .then((res) => {
-        setData(res.data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // function handleGetProjects() {
+  //   getProjects()
+  //     .then((res) => {
+  //       setData(res.data);
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  function addProject({ project }) {
-    return axios({
-      url: `http://localhost:8080/project`,
-      method: "POST",
-      data: { project },
-    });
-  }
-  function handleAdd(project) {
-    addProject({ project }).then(() => handleGetProjects());
+  // function addProject({ project }) {
+  //   return axios({
+  //     url: `http://localhost:8080/project`,
+  //     method: "POST",
+  //     data: { project },
+  //   });
+  // }
+  // function handleAdd(project) {
+  //   addProject({ project }).then(() => handleGetProjects());
+  // }
+
+  function getData(val) {
+    console.log(val.target.value);
+    setData(val.target.value);
+    setProject(false);
   }
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -116,6 +122,8 @@ const Sidebar = () => {
                       <Input
                         ref={firstField}
                         id="username"
+                        type="text"
+                        onChange={getData}
                         placeholder="Project name"
                       />
                     </Box>
@@ -160,7 +168,7 @@ const Sidebar = () => {
                     CANCEL
                   </Button>
                   <Button
-                    onClick={() => handleAdd(project)}
+                    onClick={() => setProject(true)}
                     style={{ backgroundColor: "black", color: "white" }}
                   >
                     SAVE
@@ -276,12 +284,12 @@ const Sidebar = () => {
             href="#"
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
-            {data?.map((item) => {
-              {
-                <span>{item.project} </span>;
-                <span class="text-xs font-semibold text-gray-700">0:00</span>;
-              }
-            })}
+            {project ? (
+              <>
+                <span>{data}</span>
+                <span class="text-xs font-semibold text-gray-700">0:00</span>
+              </>
+            ) : null}
           </a>
         </nav>
       </div>

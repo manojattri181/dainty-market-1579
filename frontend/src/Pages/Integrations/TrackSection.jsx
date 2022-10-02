@@ -34,7 +34,6 @@ const TrackSection = () => {
                   <img
                     className="w-8 h-8 rounded-full mt-1 mx-1"
                     src="https://www.pngitem.com/pimgs/m/198-1985099_apple-app-store-icon-free-png-and-svg.png"
-                    // width="70%"
                     alt="PlayStore"
                   />
                 </div>
