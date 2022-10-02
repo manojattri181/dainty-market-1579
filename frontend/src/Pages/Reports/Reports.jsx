@@ -7,16 +7,26 @@ const Reports = () => {
   const data = useSelector((store)=>store.AppReducer.data);
   const dispatch = useDispatch();
   const [drawer,setDrawer] = useState(false);
+  const [projectData,setProjectData] = useState({});
 
   const handleDrawer =(prop)=>{
-    console.log("data");
     setDrawer(prop);
    }
-   console.log(data);
+
+
+   function DrawertData (data){
+    setProjectData(data)
+    setTimeout(()=>{
+      handleDrawer(true)
+    },1000)
+   }
+
 
    useEffect(()=>{
      dispatch(GET_DATA());
-   },[])
+   },[data])
+
+   
 
   return (
     <div>
@@ -25,12 +35,12 @@ const Reports = () => {
         <div className="flex justify-start items-center gap-x-4 pl-4 m-1">
           <p className='text-base font-bold  text-black'>Timesheets</p>
              
-    <div class="relative">
-      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+      <div class="relative">
+        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+        </div>
+        <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input" placeholder="Select date"/>
       </div>
-      <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input" placeholder="Select date"/>
-    </div>
 
         </div>
       </div>
@@ -79,10 +89,9 @@ const Reports = () => {
                   </tr>
               </thead>
               <tbody >
-                {   data?.map((items)=>(
-    
-                     <tr className="bg-gray-200 border-b  hover:bg-gray-300 hover:cursor-pointer overflow-hidden " onClick={()=>handleDrawer(true)}>
+                {   data?.map((items,i)=>(
 
+                  <tr key={i} className="bg-gray-200 border-b  hover:bg-gray-300 hover:cursor-pointer overflow-hidden " onClick={()=>DrawertData(items)}>
                       <td className="p-4 w-4" >
                           <div className="flex items-center">
                               <input id="checkbox-table-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-200 rounded border-gray-300"/>
@@ -92,43 +101,42 @@ const Reports = () => {
                       <th scope="row" className="py-1   truncate text-sm  px-1 ">
                         Manoj Attri
                       </th>
-                      <td className="py-1 truncate   text-sm   px-4">
+                      <td className="py-1 truncate   text-sm   px-6">
                          {items.project}
                       </td>
-                      <td className="py-1  w-20   text-sm truncate  px-4">
+                      <td className="py-1  w-20   text-sm truncate  px-6">
                         {items.task}
                       </td>
                       <td className="py-2  px-4  -ml-4">
                         {
-                          items.status==="Done"? 
+                          items.status===true? 
                           <div className="h-2.5 w-2.5 rounded-full ml-4 bg-green-400 mr-2"></div> 
                           : <div className="h-2.5 w-2.5 rounded-full ml-4 bg-gray-500 mr-2"></div> 
                         }
                       </td>
-                      <td className="py-1 w-20 text-sm   truncate  px-4">
+                      <td className="py-1 w-20 text-sm   truncate  px-6">
                           {items.client}
                       </td>
-                      <td className="py-1   w-10 overflow-hidden  text-sm  truncate px-4">
+                      <td className="py-1   w-10 overflow-hidden  text-sm  truncate px-6">
                           {items.notes}
                       </td>
-                      <td className="py-1  w-20  text-sm  truncate px-4">
-                          {items.startDate}
+                      <td className="py-1  w-20  text-sm  truncate px-6">
+                          {items.createdAt.split("T")[0]}
                       </td>
-                      <td className="py-1  text-sm  px-4">
+                      <td className="py-1  text-sm  px-6">
                           {items.duration}
                       </td>
-                      <td className="py-1  w-20 text-sm  truncate px-4">
-                        {items.startTime}
+                      <td className="py-1  w-20 text-sm  truncate px-6">
+                        {items.startDate.split("T").toString().substring(11, 16)}
                       </td>
-                      <td className="py-1 w-20 text-sm  truncate px-4">
-                          {items.endTime}
+                      <td className="py-1 w-20 text-sm  truncate px-6">
+                      {items.endDate.split("T").toString().substring(11, 16)}
                       </td>
                   </tr>
-    
-    
     ))
   }
-  {drawer && <Drawer  handleDrawer={handleDrawer}/> }
+
+  {drawer && <Drawer  handleDrawer={handleDrawer} data={projectData}/> }
               </tbody>
           </table>
       </div>

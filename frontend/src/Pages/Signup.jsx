@@ -3,7 +3,7 @@ import logo from "../Images/signup/logo.svg"
 import google from "../Images/signup/google-logo.png";
 import microsoft from "../Images/signup/microsoft-logo.png";
 import apple from "../Images/signup/apple-logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { SIGNUP } from "../Redux/AuthReducer/action";
@@ -34,6 +34,7 @@ const Signup = () => {
                          setEmailError(false);
                          setPasswordError(false);
                          navigate("/login");
+                         // window.href.reload();
                     }
                }
      },[msg,email,password])
@@ -47,7 +48,7 @@ const Signup = () => {
 
      const handleSubmit =(e)=>{
           e.preventDefault();
-          dispatch(SIGNUP(data))
+          dispatch(SIGNUP(data));
      }
 
   return (
