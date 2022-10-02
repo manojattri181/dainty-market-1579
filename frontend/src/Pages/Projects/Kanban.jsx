@@ -7,8 +7,8 @@ const itemsFromBackend = [
   { id: uuidv4(), content: "Second task" },
   { id: uuidv4(), content: "Third task" },
   { id: uuidv4(), content: "Fourth task" },
-  { id: uuidv4(), content: "Fifth task" },
-  { id: uuidv4(), content: "Sixth task" },
+  { id: uuidv4(), content: "build something cool" },
+  { id: uuidv4(), content: "build masai last project" },
 ];
 
 const columnsFromBackend = {

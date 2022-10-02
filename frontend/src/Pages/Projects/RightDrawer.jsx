@@ -15,67 +15,9 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-const RightDrawer = ({ week, date, day, icon }) => {
+const RightDrawer = () => {
   const btnRef = React.useRef();
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-    return currentDate.getTime() < selectedDate.getTime();
-  };
-
-  let milliseconds = Math.abs(
-    new Date(`${endDate}`).getTime() - new Date(`${startDate}`).getTime()
-  );
-  let seconds = Math.floor(milliseconds / 1000);
-  let minutes = Math.floor(seconds / 60);
-  let hours = Math.floor(minutes / 60);
-  minutes = minutes % 60;
-
-  let dispMinutes = minutes < 10 ? `0${minutes}` : minutes;
-
-  let dispHours = hours < 10 ? `0${hours}` : hours;
-  const [duration, setDuration] = useState(0);
-  let projects = ["Project-A", "Project-B", "Project-C", "Project-D"];
-
-  const [notes, SetNotes] = useState();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [project, setProject] = useState("");
-
-  const handlepost = () => {
-    const datas = {
-      project: project,
-      startDate: startDate,
-      endDate: endDate,
-      duration: `${dispHours}:${dispMinutes}`,
-      notes: notes,
-      day: day,
-      date: date,
-      status: false,
-    };
-
-    setDuration(`${dispHours}:${dispMinutes}`);
-    if (startDate > endDate) {
-      return alert("Task Invalid");
-    }
-    console.log(datas);
-
-    fetch("http://localhost:8080/task/addtask", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(datas),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res.msg))
-      .catch((err) => console.log(err));
-
-    window.location.reload();
-  };
 
   return (
     <div>

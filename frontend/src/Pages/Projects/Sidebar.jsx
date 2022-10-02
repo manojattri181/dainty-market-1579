@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -28,35 +27,6 @@ const Sidebar = () => {
   const firstField = React.useRef();
   const [data, setData] = useState(null);
   const [project, setProject] = useState(false);
-
-  // useEffect(() => {
-  //   handleGetProjects();
-  // }, []);
-  // function getProjects() {
-  //   return axios.get("http://localhost:8080/project");
-  // }
-
-  // function handleGetProjects() {
-  //   getProjects()
-  //     .then((res) => {
-  //       setData(res.data);
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
-  // function addProject({ project }) {
-  //   return axios({
-  //     url: `http://localhost:8080/project`,
-  //     method: "POST",
-  //     data: { project },
-  //   });
-  // }
-  // function handleAdd(project) {
-  //   addProject({ project }).then(() => handleGetProjects());
-  // }
 
   function getData(val) {
     console.log(val.target.value);
@@ -286,14 +256,14 @@ const Sidebar = () => {
             href="#"
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
-            <span>Project C</span>
+            <span>Build Blog Website</span>
             <span class="text-xs font-semibold text-gray-700">0:00</span>
           </a>
           <a
             href="#"
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
-            <span>Project D</span>
+            <span>Build Tracking Time Website</span>
             <span class="text-xs font-semibold text-gray-700">0:00</span>
           </a>
           <a
