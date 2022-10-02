@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Menu,
   MenuButton,
@@ -21,15 +22,41 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-import { MdSettingsBackupRestore } from "react-icons/md";
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
-  const [task, setTask] = useState("");
-  const [project, setProject] = useState([]);
+  const [data, setData] = useState([]);
+  const [project, setProject] = useState("");
 
-  function handleAdd(task) {}
+  useEffect(() => {
+    handleGetProjects();
+  }, []);
+  function getProjects() {
+    return axios.get("http://localhost:8080/project");
+  }
+
+  function handleGetProjects() {
+    getProjects()
+      .then((res) => {
+        setData(res.data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function addProject({ project }) {
+    return axios({
+      url: `http://localhost:8080/project`,
+      method: "POST",
+      data: { project },
+    });
+  }
+  function handleAdd(project) {
+    addProject({ project }).then(() => handleGetProjects());
+  }
   return (
     <div className="bg-gray-100 min-h-screen">
       <aside className="w-64 ml-4" aria-label="Sidebar">
@@ -100,8 +127,8 @@ const Sidebar = () => {
                       >
                         <input
                           type="checkbox"
-                          value={task}
-                          onChange={(e) => setTask(e.target.value)}
+                          value={project}
+                          onChange={(e) => setProject(e.target.value)}
                           id="small-toggle"
                           class="sr-only peer"
                           checked
@@ -133,7 +160,7 @@ const Sidebar = () => {
                     CANCEL
                   </Button>
                   <Button
-                    onClick={() => handleAdd(task)}
+                    onClick={() => handleAdd(project)}
                     style={{ backgroundColor: "black", color: "white" }}
                   >
                     SAVE
@@ -222,14 +249,39 @@ const Sidebar = () => {
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
             <span>Project A</span>
-            <span class="text-xs font-semibold text-gray-700">Time</span>
+            <span class="text-xs font-semibold text-gray-700">0:00</span>
           </a>
           <a
             href="#"
             className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
           >
             <span>Project B</span>
-            <span class="text-xs font-semibold text-gray-700">Time</span>
+            <span class="text-xs font-semibold text-gray-700">0:00</span>
+          </a>
+          <a
+            href="#"
+            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
+          >
+            <span>Project C</span>
+            <span class="text-xs font-semibold text-gray-700">0:00</span>
+          </a>
+          <a
+            href="#"
+            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
+          >
+            <span>Project D</span>
+            <span class="text-xs font-semibold text-gray-700">0:00</span>
+          </a>
+          <a
+            href="#"
+            className="flex justify-between px-3 py-3 text-sm font-medium text-gray-900 bg-gray-300 rounded-lg mt-7"
+          >
+            {data?.map((item) => {
+              {
+                <span>{item.project} </span>;
+                <span class="text-xs font-semibold text-gray-700">0:00</span>;
+              }
+            })}
           </a>
         </nav>
       </div>
