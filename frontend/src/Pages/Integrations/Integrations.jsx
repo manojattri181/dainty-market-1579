@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 import "../Home/home.css";
 import { FcGoogle } from "react-icons/fc";
 import ButtonComp from "../Home/ButtonComp";

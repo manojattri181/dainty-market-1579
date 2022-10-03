@@ -3,7 +3,10 @@ import { Button, createIcon,Stack, HStack, Input, FormControl,Container, Box, Im
 import { extendTheme } from '@chakra-ui/react'
 import Example from '../Navbar/FinalNavbar';
 import Footer from '../Footer/Footer';
+
 import { styles } from './styles';
+
+
 
 const img = [
     require("../Features/Images/google-key.png"),
@@ -55,9 +58,10 @@ const Timecards = () => {
 
     
   return (
+    <>
+    <Navbar />
     <Box>
         <Example />
-
             <Box style={styles.cont} className={CSS.cont} >
                 
             {/* <Image src={logo1} style={styles.logo1Div} />
@@ -176,6 +180,7 @@ const Timecards = () => {
                 </Box>
             <Footer />
     </Box>
+    </>
   )
 }
 

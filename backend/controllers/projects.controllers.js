@@ -6,7 +6,6 @@ const { UserModel } = require("../model/user.models");
 
 const projects = express.Router();
 
-
 // * Get Request
 projects.get("/",authentication,async (req,res)=>{
      let data = await ProjectModel.find({user_id:req.body.user_id});

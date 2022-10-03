@@ -3,7 +3,8 @@ export const styles ={
         backgroundColor:"#f6f8f9",
         width:"100%",
         display:"flex",
-        flexDirection:"column"
+        flexDirection:"column",
+        marginTop:"40px"
         },
     logo1Div:{
         width: "240px",

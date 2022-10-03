@@ -1,2 +1,0 @@
-1. project id should save in task => projectId
-2. taskid should be saved in project array => task =[]
