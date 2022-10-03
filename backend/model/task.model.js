@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const taskSchema = new mongoose.Schema({
+ const taskSchema = new mongoose.Schema({
+    projectId:{type: mongoose.Schema.Types.ObjectId, ref:"project"},
     project:String,
     startDate:String,
     endDate:String,
@@ -9,6 +10,7 @@ const taskSchema = new mongoose.Schema({
     day:String,
     date:String,
     status:Boolean,
+    taskId:String
 },
 {
  versionKey:false
@@ -16,5 +18,5 @@ const taskSchema = new mongoose.Schema({
 
 const TaskModel = mongoose.model("task",taskSchema);
 
-module.exports = {TaskModel};
+module.exports = {TaskModel, taskSchema};
 

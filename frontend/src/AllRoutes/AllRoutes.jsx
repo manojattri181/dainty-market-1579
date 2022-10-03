@@ -27,6 +27,7 @@ const AllRoutes = () => {
         <Route path="/features/attendancetracking" element={<Attendance />} /> 
         <Route path="/features/timecards" element={<Timecards />} />
         <Route path="/features/onlinetimesheet" element={<Onlinetimesheet />} />
+        
 
         {/* Private routes */}
         <Route path="/hours" element={<Hours />} />
