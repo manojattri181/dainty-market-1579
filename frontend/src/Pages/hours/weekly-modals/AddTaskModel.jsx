@@ -28,22 +28,38 @@ import {
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_DATA } from "../../../Redux/AppReducer/action";
+import { fetchLink } from "../../../App";
 
 const AddTaskModel = ({ week, date, day, icon }) => {
+  let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY0Nzg5NTg1LCJleHAiOjE2NjQ4MzI3ODV9.4vhDNL6zYuIWqhT7CqQahMSFzIlHktthPTg8n4ZBXNk"
   const [alertStatus, setAlertStatus] = useState(false);
 
 
   const data = useSelector((store)=>store.AppReducer.data);
-  // console.log("data",data)
+ 
   const dispatch = useDispatch();
   const [info,setInfo] = useState([])
+  function getProject() {
+    fetch(`${fetchLink}/project`,{
+      headers:{
+        "authorization":`bearer ${token}`
+      }
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setInfo(res.data);
+        // console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+  }
   useEffect(() => {
     dispatch(GET_DATA());
     setInfo([...data])
+    getProject()
     // console.log("task", task)
   }, []);
 
-  // console.log("info",info)
+  // console.log("data",data)
 
 
   const [startDate, setStartDate] = useState(new Date());
@@ -95,7 +111,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
     }
     console.log(datas);
     var taskId;
-    await fetch("http://localhost:8080/task/addtask", {
+    await fetch(`${fetchLink}/task/addtask`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -104,7 +120,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
     }).then((res) => res.json()).then((res) => {console.log(res);  taskId=res.taskId; console.log("t",taskId)}).catch((err) => console.log(err));
     // console.log("hello", taskId)
 
-    fetch(`http://localhost:8080/project/addtask/${project.split(":")[1]}`, {
+    fetch(`${fetchLink}/project/addtask/${project.split(":")[1]}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -154,7 +170,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option value>Select Project</option>
-                {data.map((el, i) => (
+                {info.map((el, i) => (
                   <option key={i} value={`${el.project}:${el._id}`}>
                     {el.project}
                   </option>

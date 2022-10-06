@@ -8,15 +8,18 @@ const projects = express.Router();
 
 // * Get Request
 projects.get("/",authentication,async (req,res)=>{
+    // console.log(req.body)
      let data = await ProjectModel.find({user_id:req.body.user_id});
-     res.status(200).send({data:[...data]});
+     console.log(data)
+     res.status(200).json({data:[...data]});
 })
 
 // * Post Request
-projects.post("/add", authentication,async(req,res)=>{
+projects.post("/add",authentication,async(req,res)=>{
+    // console.log(req.body)
     let newTask = new ProjectModel(req.body);
     await newTask.save();
-    res.status(200).json({data:{"msg":"Project Added Sucessfully",project:req.body}})
+    res.status(200).json({data:{"msg":"Project Added Sucessfully"}})
 })
 
 // * Patch Request
@@ -34,7 +37,7 @@ projects.patch("/addtask/:id",async(req,res)=>{
     let data = await ProjectModel.findOne({_id:id})
     data.tasks.push(req.body.taskId)
     await data.save()
-    console.log(data.tasks)
+    // console.log(data.tasks)
     res.send({data:{msg:"Updated successfully"}})
     
 })

@@ -3,6 +3,7 @@ import { Alert, AlertIcon } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchLink } from "../../../App";
 import { GET_DATA } from "../../../Redux/AppReducer/action";
 
 const Showdata = ({ week, day, date }) => {
@@ -12,7 +13,7 @@ const Showdata = ({ week, day, date }) => {
   const [task, setTask] = useState([]);
   
   function getTask() {
-    fetch("http://localhost:8080/task")
+    fetch(`${fetchLink}/task`)
       .then((res) => res.json())
       .then((res) => {
         setTask([...task, ...res]);
@@ -33,7 +34,7 @@ const Showdata = ({ week, day, date }) => {
   const handleDelete = (e) => {
     console.log(e._id)
     let taskId = e._id
-    fetch(`http://localhost:8080/task/delete/${e._id}`, {
+    fetch(`${fetchLink}/task/delete/${e._id}`, {
       method: "DELETE",
       // headers:{
       //     "content-type":"application/json"
@@ -43,7 +44,7 @@ const Showdata = ({ week, day, date }) => {
       .then((res) => {console.log("1",res.msg);setAlertMsg(res.msg);setTimeout(()=>{setAlertStatus(true)},500)})
       .catch((err) => console.log(err));
 
-    fetch(`http://localhost:8080/project/deletetask/${e.projectId}`, {
+    fetch(`${fetchLink}/project/deletetask/${e.projectId}`, {
       method: "DELETE",
       headers:{
           "content-type":"application/json"
@@ -66,7 +67,7 @@ const Showdata = ({ week, day, date }) => {
   }
 
   function handleToggle(e) {
-    fetch(`http://localhost:8080/task/update/${e._id}`, {
+    fetch(`${fetchLink}/task/update/${e._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

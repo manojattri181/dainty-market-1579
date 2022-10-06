@@ -5,6 +5,7 @@ import TerminalNavbar from '../TerminalNavbar/TerminalNavbar';
 import Drawer from './Drawer';
 const Reports = () => {
   const data = useSelector((store)=>store.AppReducer.data);
+ 
   const dispatch = useDispatch();
   const [drawer,setDrawer] = useState(false);
   const [projectData,setProjectData] = useState({});
@@ -104,7 +105,7 @@ const Reports = () => {
                          {items.project}
                       </td>
                       <td className="py-1  w-20   text-sm truncate  px-6">
-                        {items.task}
+                        {items.tasks.length}
                       </td>
                       <td className="py-2  px-4  -ml-4">
                         {

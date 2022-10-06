@@ -3,16 +3,29 @@ import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import {GrFormClose} from "react-icons/gr";
 import { useDispatch} from "react-redux";
+import { fetchLink } from "../../App";
 import { GET_DATA, POST_DATA } from "../../Redux/AppReducer/action";
+import { getLocalData } from "../../utils/localStorage";
 
 var now = new Date();
 const days = ["SU","MA","TU","WE","TH","FR","SA"];
 let ans = days[ now.getDay() ];
-console.log(ans)
-
+// console.log(ans)
+// "project":{type:String,required:true},
+//     "status":{type:Boolean,default:false},
+//     "tasks": [{ type : mongoose.Schema.Types.ObjectId, ref: 'task' }],
+//     "client":{type:String},
+//     "notes":{type:String},
+//     "duration":{type:String},
+//     "day":{type:String},
+//     "date":{type:String},
+//     "startDate":{type:String,required:true},
+//     "endDate":{type:String,required:true},
+//     "user_id":{type:String,required:true},
 const schema = {
     "project":"",
     "status":false,
+    "tasks":[],
     "client":"",
     "notes":"",
     "duration":"1:00",
@@ -22,6 +35,11 @@ const schema = {
 }
 
 const Projectdrawer = ({handleDrawer}) => {
+    let token = getLocalData("token");
+    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY0Nzg5NTg1LCJleHAiOjE2NjQ4MzI3ODV9.4vhDNL6zYuIWqhT7CqQahMSFzIlHktthPTg8n4ZBXNk"
+    console.log(token)
+    const [alertStatus, setAlertStatus] = useState(false);
+
     const [data,setData] = useState(schema);
     const dispatch =useDispatch();
     const [ myproject, setProject ] = useState('Project name');
@@ -43,16 +61,63 @@ const Projectdrawer = ({handleDrawer}) => {
     }
 
     console.log(enddatetime,startdatetime);
+    let milliseconds = Math.abs(
+        new Date(`${enddatetime}`).getTime() - new Date(`${startdatetime}`).getTime()
+      );
+      let seconds = Math.floor(milliseconds / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      minutes = minutes % 60;
+      // let days = hours % 24
+    
+      let dispMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    
+      let dispHours = hours < 10 ? `0${hours}` : hours;
   
     function handleCreate(){
         let payload = {...schema,endDate:enddatetime,project:myproject,startDate:startdatetime,notes:mynotes,status:mystatus};
-      
-        setTimeout(()=>{
-            dispatch(POST_DATA(payload)).then(()=>{
-                    handleDrawer(false);
-                    dispatch(GET_DATA())
-                })
-            },1000)
+        //  console.log(JSON.stringify(payload))
+
+    const data ={
+    project:myproject,
+    status:false,
+    tasks: [],
+    client:"M",
+    notes:mynotes,
+    duration:`${dispHours}:${dispMinutes}`,
+    day: ans,
+    date: now,
+    startDate:startdatetime,
+    endDate:enddatetime,
+    // user_id:,
+    
+    }
+
+    console.log(data)
+       
+    fetch(`${fetchLink}/project/add`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `bearer ${token}`
+
+      },
+      body:JSON.stringify(data),
+    }).then((res) => res.json())
+      .then((res) => {setAlertStatus(true);console.log(res) })
+      .catch((err) => console.log(err));
+
+        // projects.post("/add", authentication,async(req,res)=>{
+        //     let newTask = new ProjectModel(req.body);
+        //     await newTask.save();
+        //     res.status(200).json({data:{"msg":"Project Added Sucessfully",project:req.body}})
+        // })
+        // setTimeout(()=>{
+        //     dispatch(POST_DATA(payload)).then(()=>{
+        //             handleDrawer(false);
+        //             dispatch(GET_DATA())
+        //         })
+        //     },1000)
     }
     
   
@@ -85,7 +150,7 @@ const Projectdrawer = ({handleDrawer}) => {
      </div>
   {/* Time tags */}
      <div className="flex gap-x-4 mt-6 px-2 py-1">
-     <div className="border border-solid border-gray-200 rounded-md">
+     <div className="border border-solid border-gray-200 rounded-md ">
           <p className="text-base font-semibold">Start Time</p>
           <input type="datetime-local"  value={(startdatetime || '').toString().substring(0, 16)}  onChange={handleStart} required="true"/>
      </div>
