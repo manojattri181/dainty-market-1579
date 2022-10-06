@@ -30,11 +30,12 @@ import { GrAdd } from "react-icons/gr";
 import Showdata from "./Showadata";
 import AddTaskModel from "./AddTaskModel";
 import { TimeIcon } from "@chakra-ui/icons";
+import { fetchLink } from "../../../App";
 
 const ParticularDay = ({ week, day, date }) => {
   const [task, setTask] = useState([]);
   function getTask() {
-    fetch("http://localhost:8080/task")
+    fetch(`${fetchLink}/task`)
       .then((res) => res.json())
       .then((res) => {
         setTask([...task, ...res]);

@@ -5,6 +5,7 @@ import Example from '../Navbar/FinalNavbar';
 import Footer from '../Footer/Footer';
 
 import { styles } from './styles';
+import Navbar from '../Navbar/Navbar';
 
 
 
