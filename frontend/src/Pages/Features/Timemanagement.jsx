@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Button, createIcon,Stack, HStack, Input, FormControl,Container, Box, Image,Text, VStack, Heading, border, textDecoration, Spacer, color} from "@chakra-ui/react";
 import { extendTheme } from '@chakra-ui/react'
 import { styles } from './styles';
+import Footer from '../Footer/Footer';
+import Example from '../Navbar/FinalNavbar';
 
 const img = [
     require("../Features/Images/google-key.png"),
@@ -62,6 +64,8 @@ const Timemanagement = () => {
 
     
   return (
+    <>
+    <Example />
     <Box>
 
             <Box style={styles.cont} className={CSS.cont} >
@@ -203,6 +207,8 @@ const Timemanagement = () => {
 
                 </Box>
     </Box>
+    <Footer />
+    </>
   )
 }
 

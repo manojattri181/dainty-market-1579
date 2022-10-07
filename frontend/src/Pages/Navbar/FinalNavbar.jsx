@@ -3,7 +3,7 @@ import DrawerExample from "./MobileNavbar"
 import Navbar from "./Navbar"
 
 function Example() {
-  const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)')
+  const [isLargerThan1280] = useMediaQuery('(min-width: 1024px)')
   
   return (
     <Text>

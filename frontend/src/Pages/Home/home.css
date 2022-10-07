@@ -4,11 +4,13 @@
     padding-top: 10px;
 }
 .Header__container{
-    max-width: 1163px;
+    /* max-width: 1163px; */
     /* border: 1px solid black; */
     margin: auto;
     margin-top: 2rem;
     top: 5%;
+   
+   
 }
 
 .header1,
@@ -99,6 +101,8 @@
     margin-top: 10px;
 }
 .Signin__google-link{
+    font-weight: bold;
+
     font-size: 1rem;
     color: black;
     z-index: 1;
@@ -106,9 +110,10 @@
 }
 
 .Signin__google-link:hover{
-    color: var(--button-color2);
-    transition: .3s;
-    letter-spacing: 1px;
+    /* color: var(--button-color2); */
+    color:#ed565a;
+    transition: .5s;
+     /*letter-spacing: 1px; */
 }
 
 
@@ -135,9 +140,9 @@
     color: var(--button-color2);
 }
 
-.slide__container{
-    /* border: 1px solid; */
-}
+/* .slide__container{
+    
+} */
 
 .slider {
     height: 200px;
@@ -362,8 +367,9 @@
 }
 
 .timesheets__Image{
-    max-width: 590px;
-    min-width: 590px;
+    /* max-width: 590px;
+    min-width: 590px; */
+    /* width: 100%; */
     /* border: 1px solid; */
     padding:3rem;
     position: relative;

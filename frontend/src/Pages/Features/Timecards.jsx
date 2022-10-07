@@ -60,9 +60,9 @@ const Timecards = () => {
     
   return (
     <>
-    <Navbar />
+    <Example />
     <Box>
-        <Example />
+        
             <Box style={styles.cont} className={CSS.cont} >
                 
             {/* <Image src={logo1} style={styles.logo1Div} />
