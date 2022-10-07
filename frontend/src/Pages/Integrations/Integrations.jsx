@@ -14,7 +14,9 @@ const Integrations = () => {
   return (
     <>
       <Example />
-      <div className=" lg:ml-44 lg:w-3/4 md:text-center sm:text-center md:w-full m-auto sm:w-full ">
+    <div style={{backgroundColor:"#f6f8f9"}}>
+
+      <div className=" lg:ml-44 lg:w-3/4 md:text-center sm:text-center md:w-full m-auto sm:w-full " >
         <TopSection />
         <AppGrid />
         <TrackSection />
@@ -63,6 +65,7 @@ const Integrations = () => {
           </div>
         </div>
       </div>
+    </div>
       <Footer />
     </>
   );

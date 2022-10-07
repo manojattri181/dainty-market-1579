@@ -4,13 +4,15 @@
     width: 100%;
     display: flex;
     /* border: 1px solid  black; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: space-around;
     align-items: center;
     /* margin: auto; */
     /* margin-top: 0.475rem; */
     background: #F6F8F9;
     padding: 0px 200px 0px 200px;
     z-index: 2;
+    gap:5rem
 }
 
 .navbar__logo > img{

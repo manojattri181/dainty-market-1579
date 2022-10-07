@@ -2,87 +2,85 @@ import React from 'react';
 import './home.css';
 import Header from './homeHeader';
 import { FcGoogle } from 'react-icons/fc';
-import { Heading, Box, Button} from '@chakra-ui/react';
+import { Heading, Box, Button, Image} from '@chakra-ui/react';
 import headerImage from '../../Images/HeaderImage-Time.PNG';
 import SlideShowComp from './SlideShowComp';
 import ButtonComp from './ButtonComp';
 import timeLogo from "../../Images/timeLogo.PNG"
+import { useWindowSize } from '../Integrations/useWindowSizeHook';
 
 const Home = () => {
+  const size = useWindowSize();
   return (
-    <div className='Home__container'>
-      <div className='Header__container'>
-        {/* custom component for top */}
-        <Header />
+    <div className='Home__container' style={{width:size.width}}>
+      <div className='Header__container' style={{width:size.width}}>
+                              {/* custom component for top */}
+                              <Header />
 
-        <div className='Signin__google'>
-          <i className='Signin__google-icon'>
-            <FcGoogle />
-          </i>
-          <a href='#' className='Signin__google-link' >
-            Sign in with Google
-          </a>
-        </div>
+            <div className='Signin__google'>
+              <i className='Signin__google-icon'>            <FcGoogle />          </i>
+              <a href='#' className='Signin__google-link' >            Sign in with Google          </a>
+            </div>
       </div>
-      <div className='header__image' style={{backgroundColor:"red"}}>
-        <img src={headerImage} alt='headerImage' />
-      </div>
+            <div className='header__image' style={{backgroundColor:"red"}}>
+              <img src={headerImage} alt='headerImage' />
+            </div>
 
-    {/* {Top section Ends} */}
+                                      {/* {Top section Ends} */}
 
-    {/* SlideShow Starts */}
+                                        {/* SlideShow Starts */}
 
-    <SlideShowComp />
+                                        <SlideShowComp />
 
-    {/* SlideShow Starts */}
+                                        {/* SlideShow Ends */}
 
       <div className='feature__management__container'>
         <h2 style={{textAlign:"center",marginTop:"30px" }}>THE FEATURES YOUR PROJECT MANAGEMENT APP IS MISSING</h2>
 
         <div className='featureCard__container'>
           <div className='featureCard'>
-            <img
-              src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-1.svg'
-              alt='card'
-            />
-            <h2 className='featureCard__header'>
-              Measure your team`s productivity
-            </h2>
-            <p>
-              Get a record of the worked hours and keep your projects in order,
-              be abreast of ongoing or completed projects with our super
-              friendly app.
-            </p>
+                <img
+                  src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-1.svg'
+                  alt='card'
+                />
+                <h2 className='featureCard__header'>
+                  Measure your team`s productivity
+                </h2>
+                <p>
+                  Get a record of the worked hours and keep your projects in order,
+                  be abreast of ongoing or completed projects with our super
+                  friendly app.
+                </p>
           </div>
 
           <div className='featureCard'>
-            <img
-              src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-2.svg'
-              alt='card'
-            />
-            <h2 className='featureCard__header'>
-              The most flexible reporting engine
-            </h2>
-            <p>
-              Project budgeting, client billing, payroll, productivity analytics
-              and much more: No matter what kind of reports you need,
-              TrackingTime has got you covered.
-            </p>
+                <img
+                  src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-2.svg'
+                  alt='card'
+                />
+                <h2 className='featureCard__header'>
+                  The most flexible reporting engine
+                </h2>
+                <p>
+                  Project budgeting, client billing, payroll, productivity analytics
+                  and much more: No matter what kind of reports you need,
+                  TrackingTime has got you covered.
+                </p>
           </div>
 
-          <div className='featureCard'>
-            <img
-              src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-3.svg'
-              alt='card'
-            />
-            <h2 className='featureCard__header'>
-              Measure your team`s productivity
-            </h2>
-            <p>
-              See every work in progress and measure the productivity of your
-              team by monitoring them in real time
-            </p>
-          </div>
+            <div className='featureCard'>
+                <img
+                  src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/keywords/article-3.svg'
+                  alt='card'
+                />
+                <h2 className='featureCard__header'>
+                  Measure your team`s productivity
+                </h2>
+                <p>
+                  See every work in progress and measure the productivity of your
+                  team by monitoring them in real time
+                </p>
+            </div>
         </div>
       </div>
 
@@ -151,7 +149,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='budgeting__container'>
+      <div className='budgeting__container' >
         <div className='cards__container'>
           <div className='budgeting__cards'>
             <img
@@ -193,13 +191,13 @@ const Home = () => {
 
       <div className='timesheets__container'>
         <div className='timesheets__Image'>
-          <img
+          <Image width={{base:"100%", lg:"50%"}}
             src='https://trackingtime.co/wp-content/themes/trackingtime-v4/img/home/bottom-action.svg'
             alt='sdf'
           />
         </div>
 
-        <Box padding="10px" >
+        <Box padding="10px"   width={{base:"100%", lg:"50%"}} display="flex" flexDirection="column" margin="auto">
           <Heading textAlign="center" fontSize={{base:'30px', lg:'50px'}}>Get professional timesheets done in no time!</Heading>
           <p style={{textAlign:"center", display:"flex" ,flexWrap:"wrap" }}>
             Sign up today and join thousands of people around the world using

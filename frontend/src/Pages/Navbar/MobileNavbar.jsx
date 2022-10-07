@@ -18,7 +18,7 @@ function DrawerExample() {
       if(isLargerThan500){
         return (
         
-          <HStack display="flex" justifyContent="space-between" width="100%"  height="60px" 
+          <HStack  display="flex" justifyContent="space-between" width="100%"  height="70px" 
           position="fixed" top="0%"  backgroundColor="#F6F8F9" zIndex="3" flexShrink="2" boxSizing="border-box"
           paddingLeft="20px" paddingRight="60px">
               <Box>
@@ -54,9 +54,9 @@ function DrawerExample() {
                  lineHeight="3.4" >
                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}}  >Time Tracker       </Link>  </Text>
                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Project Management </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/features/onlinetimesheet" >Online Timesheet   </Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link to="/features/onlinetimesheet" style={{textDecoration:"none"}}>Online Timesheet   </Link>  </Text>
                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link to="/features/timecards" style={{textDecoration:"none"}}  >Timecard           </Link>  </Text>
-                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="" >Attendance Tracking</Link>  </Text>
+                  <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/features/attendancetracking" >Attendance Tracking</Link>  </Text>
                   <Text _hover={{color:"#ed565a", cursor:"pointer"}} color="#242954;"><Link style={{textDecoration:"none"}} to="/" >Time Reporting     </Link>  </Text>
 
                   <ButtonComp refer="/signup" words="Your Work Email" s="210px" bg="white" bord="0.5px solid black" />
@@ -80,7 +80,7 @@ function DrawerExample() {
       else if(isLargerThan300){
         return (
        
-          <HStack display="flex" justifyContent="space-between"   height="60px" width="480px" 
+          <HStack  display="flex" justifyContent="space-between"   height="60px" width="100%" 
           position="fixed" top="0%"  backgroundColor="#F6F8F9" zIndex="3" flexWrap="wrap"
           paddingLeft="20px" paddingRight="10px">
               <Box>
