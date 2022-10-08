@@ -3,10 +3,12 @@ import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import {GrFormClose} from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchLink } from "../../App";
 import { DELETE_DATA, GET_DATA, PATCH_DATA } from "../../Redux/AppReducer/action";
 
 const Drawer = ({handleDrawer,data}) => {
-    const dispatch =useDispatch();
+    let  token = JSON.parse(localStorage.getItem("token"))
+    const dispatch = useDispatch();
     const {client,duration,endDate,startDate,status,project,task,_id,notes} = data;
 
     const [ myproject, setProject ] = useState(project||'Tracking Time');
@@ -36,6 +38,7 @@ const Drawer = ({handleDrawer,data}) => {
            handleDrawer(false);
            GET_DATA()
          });
+        
     }
   
     function handlePatch(id){
@@ -47,6 +50,24 @@ const Drawer = ({handleDrawer,data}) => {
         })
     }
 
+const [user,setUser] = useState("")
+  function getUser(){
+    fetch(`${fetchLink}/user`,{
+      method:"GET",
+      headers:{
+        "content-type":"application/json",
+        "authorization":`bearer ${token}`
+      }
+    }).then((res) => res.json())
+      .then((res) => {
+        setUser(res.user.email);
+        console.log(res)
+      })
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  }, []);
 
 
   return (
@@ -59,8 +80,8 @@ const Drawer = ({handleDrawer,data}) => {
         </button>
 
    <div className="flex justify-items-end items-end flex-col">
-        <h1 className="text-black text-sm font-bold">Manoj Attri</h1>
-        <h1 className="text-gray-600  text-sm font-semibold">manojattri181@gmail.com</h1>
+        {/* <h1 className="text-black text-sm font-bold">Manoj Attri</h1> */}
+        <h1 className="text-gray-600  text-sm font-semibold">{user}</h1>
    </div>
     </div>
 

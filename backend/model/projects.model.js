@@ -3,7 +3,7 @@ const { taskSchema } = require("./task.model");
 
 const ProjectSchema = new mongoose.Schema({
     
-    "project":{type:String,required:true},
+    "project":{type:String},
     "status":{type:Boolean,default:false},
     "tasks": [{ type : mongoose.Schema.Types.ObjectId, ref: 'task' }],
     "client":{type:String},
@@ -11,9 +11,9 @@ const ProjectSchema = new mongoose.Schema({
     "duration":{type:String},
     "day":{type:String},
     "date":{type:String},
-    "startDate":{type:String,required:true},
-    "endDate":{type:String,required:true},
-    "user_id":{type:String,required:true},
+    "startDate":{type:String},
+    "endDate":{type:String},
+    "user_id":{ type : mongoose.Schema.Types.ObjectId, ref: 'user' },
 },
 {
  timestamps:true,

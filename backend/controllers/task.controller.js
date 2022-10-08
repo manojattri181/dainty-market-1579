@@ -1,9 +1,11 @@
 const express = require("express");
+const authentication = require("../middleware/authentication");
 const { TaskModel } = require("../model/task.model");
 
 const taskRoute = express.Router();
 
 taskRoute.get("/",async (req,res)=>{
+    // console.log(req.body)
      let data = await TaskModel.find();
      res.status(200).send(data)
 })
@@ -23,7 +25,7 @@ taskRoute.post("/addTask", async(req,res)=>{
     
 })
 
-taskRoute.patch("/update/:taskid", async(req,res)=>{
+taskRoute.patch("/update/:taskid",async(req,res)=>{
     try{
         await TaskModel.findByIdAndUpdate(req.params.taskid, req.body)
         res.status(200).json({"msg":"Task Updated Sucessfully"})

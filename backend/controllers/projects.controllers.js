@@ -10,7 +10,7 @@ const projects = express.Router();
 projects.get("/",authentication,async (req,res)=>{
     // console.log(req.body)
      let data = await ProjectModel.find({user_id:req.body.user_id});
-     console.log(data)
+    //  console.log(data)
      res.status(200).json({data:[...data]});
 })
 

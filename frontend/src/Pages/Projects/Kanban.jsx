@@ -1,6 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { fetchLink } from "../../App";
+import { GET_DATA } from "../../Redux/AppReducer/action";
+
+
+///////////////
+const Kanban = () => {
+// let  token = JSON.parse(localStorage.getItem("token"))
+//  const [alertStatus, setAlertStatus] = useState(false);
+//  const data = useSelector((store)=>store.AppReducer.data);
+ 
+//   const dispatch = useDispatch();
+//   const [info,setInfo] = useState([])
+//   function getProject() {
+//     fetch(`${fetchLink}/project`,{
+//       method:"GET",
+//       headers:{
+//         "content-type":"application/json",
+//         "authorization":`bearer ${token}`
+//       }
+//     }).then((res) => res.json())
+//       .then((res) => {
+//         setInfo(res.data);
+//         console.log(res.data)
+//       })
+//       .catch((err) => console.log(err));
+//   }
+//   useEffect(() => {
+//     dispatch(GET_DATA());
+//     setInfo([...data])
+//     getProject()
+//     // console.log("task", task)
+//   }, []);
+
+////////////////////////
 
 const itemsFromBackend = [
   { id: uuidv4(), content: "First task" },
@@ -10,6 +45,10 @@ const itemsFromBackend = [
   { id: uuidv4(), content: "build something cool" },
   { id: uuidv4(), content: "build masai last project" },
 ];
+
+// const itemsFromBackend = []
+// info.map((el)=> itemsFromBackend.push({id:el._id, content:el.project}))
+// console.log(itemsFromBackend,"venu")
 
 const columnsFromBackend = {
   [uuidv4()]: {
@@ -25,6 +64,8 @@ const columnsFromBackend = {
     items: [],
   },
 };
+
+// console.log(columnsFromBackend,"kjhj")
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -63,8 +104,9 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-const Kanban = () => {
+
   const [columns, setColumns] = useState(columnsFromBackend);
+  // console.log("col", columns)
 
   return (
     <div>
