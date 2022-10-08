@@ -1,7 +1,8 @@
 NEM-111 project
 
 dainty-market-1579
-
+[Frontend Link] (https://tracking-time-cw.netlify.app/) 
+[Backend Link] (https://infinite-hollows-22855.herokuapp.com)
 ## Team Member
 
 - [@Manoj Attri](https://github.com/manojattri181)
