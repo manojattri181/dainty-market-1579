@@ -1,3 +1,4 @@
+import { Alert, AlertIcon } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
@@ -35,10 +36,12 @@ const schema = {
 }
 
 const Projectdrawer = ({handleDrawer}) => {
-    let token = getLocalData("token");
+  let  token = JSON.parse(localStorage.getItem("token"))
     // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY0Nzg5NTg1LCJleHAiOjE2NjQ4MzI3ODV9.4vhDNL6zYuIWqhT7CqQahMSFzIlHktthPTg8n4ZBXNk"
     console.log(token)
     const [alertStatus, setAlertStatus] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
+
 
     const [data,setData] = useState(schema);
     const dispatch =useDispatch();
@@ -100,12 +103,13 @@ const Projectdrawer = ({handleDrawer}) => {
       headers: {
         "content-type": "application/json",
         "authorization": `bearer ${token}`
-
       },
       body:JSON.stringify(data),
     }).then((res) => res.json())
-      .then((res) => {setAlertStatus(true);console.log(res) })
+      .then((res) => {setAlertStatus(true);console.log(res);setAlertMsg(res.msg) })
       .catch((err) => console.log(err));
+
+      setTimeout(()=>{window.location.reload()},1500)
 
         // projects.post("/add", authentication,async(req,res)=>{
         //     let newTask = new ProjectModel(req.body);
@@ -119,21 +123,41 @@ const Projectdrawer = ({handleDrawer}) => {
         //         })
         //     },1000)
     }
-    
+    const [user,setUser] = useState("")
+  function getUser(){
+    fetch(`${fetchLink}/user`,{
+      method:"GET",
+      headers:{
+        "content-type":"application/json",
+        "authorization":`bearer ${token}`
+      }
+    }).then((res) => res.json())
+      .then((res) => {
+        setUser(res.user.email);
+        console.log(res)
+      })
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    getUser()
+  }, []);
   
 
   return (
     <div className="w-full h-screen   fixed z-10 top-0  flex justify-between">
+           
+
         <div className="w-[70%] opacity-70 bg-black hover:cursor-default" onClick={()=>handleDrawer(false)}></div>
 <div  className="relative z-50 w-[30%] bg-white px-8 py-4"  aria-hidden="true">
     <div className="flex justify-between items-center">
+    {alertStatus? <Alert  status='success' variant='left-accent' ><AlertIcon />  Project Added Sucessfully</Alert>:""}
         <button type="button" onClick={()=>handleDrawer(false)}  className="text-gray-400 bg-transparent hover:bg-gray-200">
         <GrFormClose size={"25px"}/>
         </button>
 
    <div className="flex justify-items-end items-end flex-col">
-        <h1 className="text-black text-sm font-bold">Manoj Attri</h1>
-        <h1 className="text-gray-600  text-sm font-semibold">manojattri181@gmail.com</h1>
+        {/* <h1 className="text-black text-sm font-bold">Manoj Attri</h1> */}
+        <h1 className="text-gray-600  text-sm font-semibold">{user}</h1>
    </div>
     </div>
 

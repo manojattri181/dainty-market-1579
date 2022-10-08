@@ -31,7 +31,9 @@ import { GET_DATA } from "../../../Redux/AppReducer/action";
 import { fetchLink } from "../../../App";
 
 const AddTaskModel = ({ week, date, day, icon }) => {
-  let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY0Nzg5NTg1LCJleHAiOjE2NjQ4MzI3ODV9.4vhDNL6zYuIWqhT7CqQahMSFzIlHktthPTg8n4ZBXNk"
+  let  token = JSON.parse(localStorage.getItem("token"))
+
+  // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY0Nzg5NTg1LCJleHAiOjE2NjQ4MzI3ODV9.4vhDNL6zYuIWqhT7CqQahMSFzIlHktthPTg8n4ZBXNk"
   const [alertStatus, setAlertStatus] = useState(false);
 
 
@@ -41,22 +43,41 @@ const AddTaskModel = ({ week, date, day, icon }) => {
   const [info,setInfo] = useState([])
   function getProject() {
     fetch(`${fetchLink}/project`,{
+      method:"GET",
       headers:{
+        "content-type":"application/json",
         "authorization":`bearer ${token}`
       }
-    })
-      .then((res) => res.json())
+    }).then((res) => res.json())
       .then((res) => {
         setInfo(res.data);
-        // console.log(res.data)
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }
+  const [user,setUser] = useState("")
+  function getUser(){
+    fetch(`${fetchLink}/user`,{
+      method:"GET",
+      headers:{
+        "content-type":"application/json",
+        "authorization":`bearer ${token}`
+      }
+    }).then((res) => res.json())
+      .then((res) => {
+        setUser(res.user.email);
+        console.log(res)
+      })
+      .catch((err) => console.log(err));
+  }
+
+  
   useEffect(() => {
     dispatch(GET_DATA());
     setInfo([...data])
     getProject()
     // console.log("task", task)
+    getUser()
   }, []);
 
   // console.log("data",data)
@@ -115,6 +136,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        "authorization":`bearer ${token}`
       },
       body: JSON.stringify(datas),
     }).then((res) => res.json()).then((res) => {console.log(res);  taskId=res.taskId; console.log("t",taskId)}).catch((err) => console.log(err));
@@ -124,6 +146,8 @@ const AddTaskModel = ({ week, date, day, icon }) => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        "authorization":`bearer ${token}`
+
       },
       body:JSON.stringify({taskId}),
     }).then((res) => res.json())
@@ -153,7 +177,7 @@ const AddTaskModel = ({ week, date, day, icon }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{week}</ModalHeader>
-          <ModalHeader></ModalHeader>
+          <ModalHeader>{user}</ModalHeader>
           {alertStatus? <Alert status='success' variant='left-accent'><AlertIcon />  Task Added Successfully</Alert>:""}
           <ModalCloseButton />
           <ModalBody pb={6}>

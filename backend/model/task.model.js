@@ -10,7 +10,8 @@ const mongoose = require("mongoose");
     day:String,
     date:String,
     status:Boolean,
-    taskId:String
+    taskId:String,
+    user_id:{ type : mongoose.Schema.Types.ObjectId, ref: 'user' }
 },
 {
  versionKey:false

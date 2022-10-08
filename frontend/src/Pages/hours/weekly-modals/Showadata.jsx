@@ -7,13 +7,22 @@ import { fetchLink } from "../../../App";
 import { GET_DATA } from "../../../Redux/AppReducer/action";
 
 const Showdata = ({ week, day, date }) => {
+  let  token = JSON.parse(localStorage.getItem("token"))
+  // console.log("tok", `Bearer ${tok}`)
+  // let  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzOTY0NjUxYzdhYWM1OTAyNDNjMTVjIiwiaWF0IjoxNjY1MjAzMTM2LCJleHAiOjE2NjUyNDYzMzZ9.sfHeDevhout7QxsbHzqjTUtbt6CzmK6Y5Vtle_XU5oE"
   const [alertStatus, setAlertStatus] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
 
   const [task, setTask] = useState([]);
   
   function getTask() {
-    fetch(`${fetchLink}/task`)
+    fetch(`${fetchLink}/task`,{
+      method:"GET",
+      headers:{
+        "content-type":"application/json",
+        "authorization":`Bearer ${token}`
+      }
+    })
       .then((res) => res.json())
       .then((res) => {
         setTask([...task, ...res]);

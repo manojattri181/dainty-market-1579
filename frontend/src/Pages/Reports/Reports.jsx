@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchLink } from '../../App';
 import { GET_DATA } from '../../Redux/AppReducer/action';
 import TerminalNavbar from '../TerminalNavbar/TerminalNavbar';
 import Drawer from './Drawer';
 const Reports = () => {
+  let  token = JSON.parse(localStorage.getItem("token"))
+
   const data = useSelector((store)=>store.AppReducer.data);
+  console.log(data,"data")
  
   const dispatch = useDispatch();
   const [drawer,setDrawer] = useState(false);
@@ -21,10 +25,26 @@ const Reports = () => {
       handleDrawer(true)
     },1000)
    }
-
+   const [user,setUser] = useState("")
+   function getUser(){
+     fetch(`${fetchLink}/user`,{
+       method:"GET",
+       headers:{
+         "content-type":"application/json",
+         "authorization":`bearer ${token}`
+       }
+     }).then((res) => res.json())
+       .then((res) => {
+         setUser(res.user.email);
+         console.log(res)
+       })
+       .catch((err) => console.log(err));
+   }
+  
 
    useEffect(()=>{
      dispatch(GET_DATA());
+     getUser()
    },[])
 
   
@@ -99,7 +119,7 @@ const Reports = () => {
                           </div>
                       </td>
                       <th scope="row" className="py-1   truncate text-sm  px-1 ">
-                        Manoj Attri
+                        {user}
                       </th>
                       <td className="py-1 truncate   text-sm   px-6">
                          {items.project}

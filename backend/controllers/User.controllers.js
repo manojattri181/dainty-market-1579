@@ -2,7 +2,14 @@ const express = require("express");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const { UserModel } = require("../model/user.models");
+const authentication = require("../middleware/authentication");
 const user = express.Router();
+
+user.get("/",authentication, async(req,res)=>{
+    // console.log(req.body)
+    let data = await UserModel.findOne({_id:req.body.user_id})
+    res.json({"msg":"Data found sucessfull", "user":data})
+})
 
 user.post("/signup", async (req,res)=>{
     const passw = /^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,15}$/;
