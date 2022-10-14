@@ -8,6 +8,7 @@ const app = express();
 const cors = require("cors");
 
 require("dotenv").config();
+const PORT = process.env.PORT || 8080
 
 app.use(cors());
 app.use(express.json());
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("welcome to Backend Server of TrackingTime");
 });
 
-app.listen(8080, async () => {
+app.listen(PORT, async () => {
   try {
     await connection;
     console.log("✓ connected to Database Successfully");
