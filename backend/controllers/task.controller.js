@@ -4,13 +4,15 @@ const { TaskModel } = require("../model/task.model");
 
 const taskRoute = express.Router();
 
-taskRoute.get("/",async (req,res)=>{
+taskRoute.get("/",authentication,async (req,res)=>{
     // console.log(req.body)
-     let data = await TaskModel.find();
+     let data = await TaskModel.find({user_id:req.body.user_id}).populate("projectId","project")
+    //  console.log(data)
      res.status(200).send(data)
 })
 
-taskRoute.post("/addTask", async(req,res)=>{
+taskRoute.post("/addTask",authentication ,async(req,res)=>{
+    // console.log(req.body)
     var taskId
     let newTask = new TaskModel(req.body);
     await newTask.save((err, room) => {

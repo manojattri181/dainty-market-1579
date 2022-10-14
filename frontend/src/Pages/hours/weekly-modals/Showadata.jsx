@@ -35,7 +35,7 @@ const Showdata = ({ week, day, date }) => {
      // console.log("task", task)
   }, []);
 
-  
+  console.log("task",task)
 
   let p = task.filter((el) => el.day === day && el.date === date);
   // console.log(p)
@@ -103,7 +103,7 @@ const Showdata = ({ week, day, date }) => {
           <div className="flex justify-between">
             <div className="flex align-">
               {/* <div><MdTimer style={{ width: "20px", height: "20px", color: "teal" }} /></div> */}
-              <div className="text-2xl font-mono ">{e.project} </div>
+              <div className="text-2xl font-mono ">{e.projectId.project} </div>
             </div>
             {/* <button onClick={() => handleDelete(e.id)} ><ImCross style={{ color: "teal" }} /></button>*/}
           </div>

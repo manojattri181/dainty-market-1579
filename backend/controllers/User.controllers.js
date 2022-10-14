@@ -33,7 +33,12 @@ user.post("/signup", async (req,res)=>{
 user.post("/login", async (req,res)=>{
     let {email,password} = req.body;
     let user_data = await UserModel.findOne({email:email});
-    let hash = user_data.password; 
+    if(user_data==null){
+        console.log("User Not Found Please SignUp")
+        res.send({"msg":"User Not Found Please SignUp"})
+    }
+    else {
+        let hash = user_data.password; 
     if(hash){
         bcrypt.compare(password, hash, (err, result)=> {
             if(result){
@@ -46,6 +51,9 @@ user.post("/login", async (req,res)=>{
     }else{
         res.send({data:{msg:"Login Failed ,Please give correct email and password"}});
     }
+        
+    }
+    
     })
 
 module.exports = {user}; 
