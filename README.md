@@ -103,13 +103,7 @@ npm start
 - create-react-app template
 
 ### Tech-Stacks
--React
--Redux
--NodeJs
--Express
--MongoDB
--Chakra-UI
--Tailwind-CSS
+React | Redux | NodeJs | Express | MongoDB | Chakra-UI | Tailwind-CSS
 
 <br/>
 
