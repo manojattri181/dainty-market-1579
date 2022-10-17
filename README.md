@@ -10,7 +10,7 @@ dainty-market-1579
 <h3 align="center"><a href="https://tracking-time-cw.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
 
 
-<h3 align="center"><a href="https://ttbackendcwproject.herokuapp.com/"><strong>Want to see Beackend Deployment »</strong></a></h3>
+<h3 align="center"><a href="https://ttbackendcwproject.herokuapp.com/"><strong>Want to see Backend Deployment »</strong></a></h3>
 
 <p align="center"> 
     <br />&#10023;
