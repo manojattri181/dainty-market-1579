@@ -102,6 +102,14 @@ npm start
 - Visual Studio Code
 - create-react-app template
 
+### Tech-Stacks
+-React
+-Redux
+-NodeJs
+-Express
+-MongoDB
+-Chakra-UI
+-Tailwind-CSS
 
 <br/>
 
