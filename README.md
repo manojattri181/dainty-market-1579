@@ -104,9 +104,7 @@ npm start
 
 ### Tech-Stacks
 React | Redux | NodeJs | Express | MongoDB | Chakra-UI | Tailwind-CSS
-
 <br/>
-
 ## Contributors
 
 - [@Manoj Attri](https://github.com/manojattri181)
